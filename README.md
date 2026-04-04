@@ -134,81 +134,29 @@ To systematically organize the diverse research and practical resources in the f
 <a id="core-concepts"></a>
 ## 🧠 Core Concepts
 
-- LLM Memory: A fusion of implicit knowledge encoded within parameters (acquired during training) and explicit storage outside parameters (retrieved at runtime), enabling models to transcend token limitations and possess human-like abilities to "remember the past, understand the present, and predict the future."
+- **World Model**: An internal mental model of an AI system designed to understand the laws of physics, causal relationships, and the dynamic changes of the environment. It endows an agent with "imagination," enabling it to simulate future states internally and evaluate the consequences of actions, thereby achieving efficient planning and decision-making without resorting to expensive trial-and-error in the real environment.
 
-- Memory System: The complete technical stack implementing memory functionality for large language models, comprising four core components:
-  - Memory Storage Layer: Vector databases (e.g., Chroma, Weaviate), graph databases, or hybrid storage solutions
-  - Memory Processing Layer: Embedding models, summarization generators, and memory segmenters
-  - Memory Retrieval Layer: Multi-stage retrievers, reranking modules, and context injectors
-  - Memory Control Layer: Memory prioritization managers, forgetting controllers, and consistency coordinators
+- **State Representation Learning**: The process of transforming high-dimensional, redundant raw observational data (e.g., images, video) into low-dimensional, compact latent vectors that contain crucial semantic information. Ideal representations should possess the Markov property and be able to disentangle different entities and their attributes within the environment.
 
-- Memory Operations: Atomic memory operations executed through tool calling in memory systems:
-  - Writing: Converting dialogue content into vectors for storage, often combined with summarization to reduce noise
-  - Retrieval: Generating queries based on current context to obtain Top-K relevant memories
-  - Updating: Finding relevant memories via vector similarity and replacing or enhancing them
-  - Deletion: Removing specific memories based on user instructions or automatic policies (e.g., privacy expiration)
-  - Compression: Merging multiple related memories into summaries to free storage space
+- **Transition Model / Dynamics Model**: A core component of the world model responsible for predicting how the environment will evolve to the next state after executing a specific action in the current state ($S_t, A_t \rightarrow S_{t+1}$). It captures the physical laws and causal logic of the environment.
 
-- Memory Management: The methodology for managing memories within memory systems, including:
-  - Memory Lifecycle: End-to-end management from creation, active usage, infrequent access, to archiving/deletion
-  - Conflict Resolution: Arbitration mechanisms for contradictory information (e.g., timestamp priority, source credibility weighting)
-  - Resource Budgeting: Allocating memory quotas to different users/tasks to prevent resource abuse
-  - Security Governance: Automatic detection and de-identification of PII (Personally Identifiable Information)
+- **Latent Space Simulation**: Performing future prediction and inference within a low-dimensional latent space rather than the raw pixel space. This greatly improves computational efficiency and allows the model to focus on high-level semantic changes while ignoring irrelevant details.
 
-- Memory Classification: A multi-dimensional classification system unique to memory systems:
-  - By Access Frequency: Working memory (current tasks), frequent memory (personal preferences), archived memory (historical records)
-  - By Structured Degree: Structured memory (database records), semi-structured memory (dialogue summaries), unstructured memory (raw conversations)
-  - By Sharing Scope: Personal memory (single user), team memory (collaborative spaces), public memory (shared knowledge bases)
-  - By Temporal Validity: Permanent memory (core facts), temporary memory (conversation context), time-sensitive memory (e.g., "user is in a bad mood today")
+- **Model-Based Planning**: The process where an agent utilizes the world model to search for an optimal sequence of actions during lookahead or "dreaming." Common algorithms include Model Predictive Control (MPC) and Monte Carlo Tree Search (MCTS).
 
-- Memory Mechanisms: Core technical components enabling memory system functionality:
-  - Retrieval-Augmented Generation (RAG): Enhancing generation by retrieving relevant information from knowledge bases
-  - Memory Reflection Loop: Models periodically "review" conversation history to generate high-level summaries
-  - Memory Routing: Automatically selecting retrieval sources based on query type (personal memory/public knowledge base)
+- **Model-Based Reinforcement Learning (MBRL)**: A reinforcement learning paradigm where the agent first learns a world model and then utilizes this model to generate simulated experience to train a policy or value function, thereby significantly improving data efficiency.
 
-- Explicit Memory: Memory stored as raw text outside the model, implemented through vector databases with hybrid indexing strategies:
-  - Dense Vector Indexing: Handling semantic similarity queries
-  - Sparse Keyword Indexing: Processing exact match queries
-  - Multi-vector Indexing: Segmenting long documents into multiple parts, each independently indexed
+- **Differentiable Physics Engine**: A physics simulator capable of computing the gradients of outputs with respect to inputs. When integrated into a world model, it allows for direct optimization of control policies via gradient descent, enabling highly efficient learning.
 
-- Parametric Memory: Knowledge and capabilities stored within the fixed weights of a language model's architecture, characterized by:
-  - Serving as the model's core long-term semantic memory carrier
-  - Being activatable without external retrieval or explicit contextual support
-  - Providing the foundational capability for zero-shot reasoning, general responses, and language generation
+- **Object-Centric Representation**: A way of representing the environment as a set of discrete objects and their interactions. This approach aligns with human cognition, helping to improve the model's generalization to unseen scenarios and its causal reasoning capabilities.
 
-- Long-Term Memory: Key information designed for persistent storage, typically implemented as external knowledge bases with capabilities including:
-  - Automatic Summarization: Distilling multi-turn dialogues into structured memory
-  - Context Binding: Recording memory context to prevent erroneous generalization
-  - Multimodal Storage: Simultaneously preserving text, images, audio, and other multimodal memories
+- **Multimodal World Model**: A world model capable of processing and integrating multiple perceptual modalities (e.g., vision, language, tactile, action). It leverages complementary information from different modalities to build a more comprehensive and robust understanding of the environment.
 
-- Short-Term Memory: Active information within the LLM's context window, constrained by attention mechanisms. Key techniques include:
-  - KV Cache Management: Reusing key-value caches to reduce redundant computation
-  - Context Compression: Using summaries instead of detailed history (e.g., "the previous 5 dialogue rounds discussed project budget")
-  - Sliding Window Attention: Focusing only on the most recent N tokens while preserving special markers
-  - Memory Summary Injection: Dynamically inserting summaries of long-term memory into short-term context
+- **Causal Discovery & Reasoning**: The ability to distinguish between correlation and causation within a world model. This enables the agent to understand "what would happen if I did this" (Intervention) and to perform counterfactual reasoning.
 
-- Episodic Memory: Memory type recording specific user interaction history, fundamental to personalized AI:
-  - User Identity Recognition: Identifying the same user across sessions
-  - Interaction Trajectory Recording: Preserving user decision paths and feedback
-  - Emotional State Tracking: Recording patterns of user mood changes
-  - Preference Evolution Modeling: Capturing long-term changes in user interests
+- **Cognitive Map**: A specific form of a world model that focuses on the internal representation of the environment's spatial structure, topological relationships, and key landmarks, often used for navigation and long-term planning tasks.
 
-- Memory Forgetting: Deliberately designed forgetting mechanisms in large models, including:
-  - Selective Forgetting (Machine Unlearning): Removing the influence of specific information from training data, such as covering specific knowledge with forgetting layers
-  - Privacy-Driven Forgetting: Automatically identifying and deleting PII information, or setting automatic expiration
-  - Memory Decay: Automatically lowering the priority of infrequently accessed memories based on usage frequency
-  - Conflict-Driven Forgetting: Strategically updating or discarding old memories when new evidence conflicts with them
-
-- Memory Retrieval: The complex process of precisely locating relevant information from massive memory repositories:
-  - Semantic Pre-filtering: Vector similarity matching to obtain Top-100 candidates
-  - Contextual Reranking: Reordering results based on current query context
-  - Temporal Filtering: Prioritizing the most recent relevant information
-
-- Memory Compression: A collection of techniques maximizing memory utility under limited resources:
-  - Content-level Compression: Extracting core information while discarding redundant details
-  - Representation-level Compression: Vector quantization (e.g., PQ coding), dimensionality reduction
-  - Organization-level Compression: Clustering similar memories, building hierarchical memory structures
-  - Knowledge Distillation: Transferring key patterns from external memory into parametric memory
+- **General / Foundation World Model**: A world model pre-trained on massive, diverse datasets (e.g., internet-scale video) possessing strong generalization capabilities. It can serve as a universal physical common-sense knowledge base for downstream embodied AI tasks like robotic manipulation and autonomous driving.
 
 ---
 
