@@ -136,7 +136,7 @@ To systematically organize the diverse research and practical resources in the f
   - [Benchmarks and tasks](#Benchmarks-and-tasks)
   - [Systems and open sources](#Systems-and-open-sources)
   - [Multi-media resource](#Multi-media-resource)
-- [Community & Support](#community--support)
+- [Community and Support](#community-and-support)
 - [Make a Contribution](#-Make-a-Contribution)
 
 ---
@@ -415,7 +415,7 @@ Summary:
   - Significant Result: 
 ```
 
-## 💬 Community & Support
+## 💬 Community and Support
 
 Join our community to ask questions, share your projects, and connect with other developers.
 
