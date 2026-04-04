@@ -5849,10 +5849,9 @@ Summary:
 
 加入我们的社区，提出问题，分享您的项目，并与其他开发人员联系.
 
-- **GitHub Issues**: 在我们的 <a href="https://github.com/IAAR-Shanghai/Awesome-AI-Memory/issues" target="_blank">GitHub Issues</a> 中报告问题或提出功能需求。  
-- **GitHub Pull Requests**: 通过 <a href="https://github.com/IAAR-Shanghai/Awesome-AI-Memory/pulls" target="_blank">Pull Requests</a> 提交代码改进。  
-- **GitHub Discussions**: 在我们的 <a href="https://github.com/IAAR-Shanghai/Awesome-AI-Memory/discussions" target="_blank">GitHub Discussions</a> 中提问或分享想法。
-- **Rednote**: 扫描下方二维码加入我们的讨论组，获取最新的Memory相关的研究信息，或推广您的相关研究成果。
+- **GitHub Issues**: 在我们的 <a href="https://github.com/pm1255/Awesome-World-Model/issues" target="_blank">GitHub Issues</a> 中报告问题或提出功能需求。  
+- **GitHub Pull Requests**: 通过 <a href="https://github.com/pm1255/Awesome-World-Model/pulls" target="_blank">Pull Requests</a> 提交代码改进。  
+- **Rednote**: 扫描下方二维码加入我们的讨论组，获取最新的World Model相关的研究信息，或推广您的相关研究成果。
 
 <!-- <div style="text-align: center;">
   <img src="assets/rednote-qr-code.jpg" alt="QR Code" width="255">
