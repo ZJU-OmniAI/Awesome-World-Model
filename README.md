@@ -29,25 +29,37 @@ Our mission is to establish a centralized, continuously evolving knowledge base 
 ---
 
 ## 📏 Project Scope
-This repository focuses on memory mechanisms and system designs that extend or augment the context window capabilities of large language models, rather than merely addressing model pre-training or general knowledge learning. The content encompasses both theoretical research and engineering practices.
+This repository focuses on mechanisms, architectures, and applications that enable AI systems to build internal mental models of the external world (encompassing physical, causal, and social laws), rather than general generative models (unless specifically related to video/image generation as a world simulator). The content spans from foundational theoretical research (e.g., representation learning) to concrete engineering practices (e.g., simulators and deployment).
 
 🌀 Included Content (In Scope)
-- Memory and memory system designs for large language models
-- External explicit memory beyond model parameters
-- Short-term memory, long-term memory, episodic memory, and semantic memory
-- Retrieval-Augmented Generation (RAG) as a memory access mechanism
-- Memory management strategies (writing, updating, forgetting, compression)
-- Memory systems in intelligent agents (Agents)
-- Shared and collaborative memory in multi-agent systems
-- Memory models inspired by cognitive science and biological memory
-- Evaluation methods, benchmarks, and datasets related to LLM memory
-- Open-source frameworks and tools for memory-enhanced LLMs
+- World Model Architectural Design: Latent Space Models specifically designed for learning Environment Dynamics, Predictive Coding architectures, and recurrent networks (RNNs/Transformers) serving as Transition Models.
+
+- Representation Learning for World Models: Learning representations that are causal, physically meaningful, or Object-Centric, and the application of Self-Supervised Learning (SSL) in constructing world models.
+
+- Simulation and Imagination Mechanisms: Using generative video/image models (e.g., Diffusion Models, GANs) as interactive World Simulators, and agent "Dreaming" or "Simulation-in-the-head" within internal models.
+
+- Model-Based Planning and Control (MPC): Decision-making methods that combine World Models with Trajectory Planning, Tree Search (e.g., MCTS), or Gradient Descent optimization.
+
+- Model-Based Reinforcement Learning (MBRL): Using learned World Models to accelerate Policy Optimization; offline or online RL via "imagination."
+
+- Domain-Specific Applications: World Models for Autonomous Driving, Embodied Robotic manipulation, navigation, and scientific simulations.
+
+- Cognitive Science and Biological Inspiration: Neuroscience models of how the Hippocampus or Neocortex builds environmental maps, and their implications for AI World Models.
+
+- Evaluation and Benchmarking: Benchmarks and Datasets specifically for measuring World Model prediction accuracy, planning efficiency, data efficiency, and generalization.
+
+- Open-Source Frameworks and Tools: Repositories and Simulation Environments dedicated to building and testing World Models.
 
 🌀 Excluded Content (Out of Scope)
-- General model pre-training or scaling research without direct memory relevance
-- Purely parameterized knowledge learning without memory interaction
-- Traditional databases or information retrieval systems unrelated to LLMs
-- Generic memory systems outside the LLM context (unless demonstrating direct transfer value)
+- General Video or Image Generation Research: If the purpose is not serving as a world model to support agent planning or understanding (e.g., general art generation, unconditional video interpolation).
+
+- General Model-Free Reinforcement Learning: Unless it demonstrates a combination with World Models (e.g., as a baseline in Actor-Critic, but the focus isn't the world model itself).
+
+- Pure Large Language Model (LLM) Reasoning: Unless the research specifically focuses on LLMs as a logical or common-sense model of the world applied to physical entities.
+
+- Traditional Deterministic Physics Simulators: Unless focused on learning (Leaning from Data) physical laws, or used as a tool for building data-driven world models.
+
+- Generic Machine Learning or Computer Vision Methods: Lacking a direct World Model application scenario.
 
 ---
 
@@ -105,16 +117,7 @@ To systematically organize the diverse research and practical resources in the f
 --- -->
 
 ## 🔔 Recent hot research and news
-+ 2026-03-15 - 🎉 Updated 14 papers，including 14 on methods
-+ 2026-03-08 - 🎉 Updated 15 papers, including 3 on survey, 2 on systems and models, 5 on benchmarks, and 5 on methods
-+ 2026-03-02 - 🎉 Add a new code agent to this repo
-+ 2026-02-27 - 🎉 Updated 20 papers, including 1 on survey, 2 on systems and models, 2 on benchmarks, and 15 on methods
-+ 2026-02-26 - 🎉 Updated 14 papers, including 14 on methods
-+ 2026-02-14 - 🎉 Updated 15 papers, including 1 on survey, 12 on methods, 1 on benchmarks, and 1 on systems and models
-+ 2026-02-09 - 🎉 Updated 15 papers
-+ 2026-02-01 - 🎉 Updated 16 papers, including 9 on methods, 4 on benchmarks, and 3 on systems and models
-+ 2025-12-24 – 🎉 Release Repository V(1.0)
-+ 2025-12-10 – 🎉 Initial Repo
++ 2026-4-4 – 🎉 Initial Repo
 
 ---
 
