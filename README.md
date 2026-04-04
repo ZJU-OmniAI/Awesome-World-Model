@@ -290,7 +290,7 @@ Papers below are ordered by **publication date**:
 
 | Task Type | Benchmarks & Datasets |
 | :--: | -- |
-| **Personalized Task Evaluation** | [IMPLEXCONV](https://aclanthology.org/2025.emnlp-main.580.pdf), [PERSONAMEM](https://arxiv.org/pdf/2504.14225), [PERSONAMEM-v2](https://www.arxiv.org/pdf/2512.06688), [PersonaBench](https://aclanthology.org/2025.findings-acl.49.pdf), [PersonaFeedback](https://arxiv.org/pdf/2506.12915), [LaMP](https://aclanthology.org/2024.acl-long.399.pdf), [MemDaily](https://arxiv.org/pdf/2409.20163), [MPR](https://arxiv.org/pdf/2508.13250), [KnowMe-Bench](https://arxiv.org/abs/2601.04745) |
+| **Physical Consistency** | [MMWorld](https://arxiv.org/abs/2406.08407) |
 
 <a id="systems-and-open-sources"></a>
 ### 💻 Systems and Open Sources
