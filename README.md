@@ -183,6 +183,7 @@ Papers below are ordered by **publication date**:
       <img src="https://img.shields.io/badge/TechRxiv-Paper-orange" alt="TechRxiv Badge">
     </a></td>
     </tr>
+    <tr>
       <td colspan="3">
             • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
             • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
@@ -214,7 +215,7 @@ Papers below are ordered by **publication date**:
         <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
       </a></td>
     </tr>
-      </tr>
+      <tr>
       <td colspan="3">
             • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
             • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
@@ -245,7 +246,7 @@ Papers below are ordered by **publication date**:
         <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
       </a></td>
     </tr>
-      </tr>
+      <tr>
       <td colspan="3">
             • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
             • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
