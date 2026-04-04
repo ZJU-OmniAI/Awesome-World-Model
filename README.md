@@ -136,8 +136,8 @@ To systematically organize the diverse research and practical resources in the f
   - [Benchmarks and tasks](#Benchmarks-and-tasks)
   - [Systems and open sources](#Systems-and-open-sources)
   - [Multi-media resource](#Multi-media-resource)
+- [Community & Support](#community--support)
 - [Make a Contribution](#-Make-a-Contribution)
-- [Star Trends](#-star-trends)
 
 ---
 
