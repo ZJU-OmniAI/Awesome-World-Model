@@ -183,6 +183,12 @@ Papers below are ordered by **publication date**:
       <img src="https://img.shields.io/badge/TechRxiv-Paper-orange" alt="TechRxiv Badge">
     </a></td>
     </tr>
+      <td colspan="3">
+            • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
+            • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
+            • Long-context models demonstrate advantages in factual recall, but their costs increase with each interaction turn; at a 100k context length, memory systems surpass them in cost efficiency after approximately 10 turns, providing a quantitative basis for real-world engineering decisions.
+        </td>
+    <\tr>
   </table>
 </details>
 
@@ -208,6 +214,13 @@ Papers below are ordered by **publication date**:
         <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
       </a></td>
     </tr>
+      </tr>
+      <td colspan="3">
+            • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
+            • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
+            • Long-context models demonstrate advantages in factual recall, but their costs increase with each interaction turn; at a 100k context length, memory systems surpass them in cost efficiency after approximately 10 turns, providing a quantitative basis for real-world engineering decisions.
+        </td>
+    <\tr>
   </table>
 </details>
 
@@ -232,6 +245,13 @@ Papers below are ordered by **publication date**:
         <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
       </a></td>
     </tr>
+      </tr>
+      <td colspan="3">
+            • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
+            • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
+            • Long-context models demonstrate advantages in factual recall, but their costs increase with each interaction turn; at a 100k context length, memory systems surpass them in cost efficiency after approximately 10 turns, providing a quantitative basis for real-world engineering decisions.
+        </td>
+    <\tr>
   </table>
 </details>
 
@@ -253,14 +273,14 @@ Papers below are ordered by **publication date**:
     <tr>
       <th>Type</th>
       <th>Website Link</th>
-      <th>Video Introduction</th>
+      <th>Introduction</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="1"><strong>Basic Theory of Memory</strong></td>
-      <td>https://www.youtube.com/watch?v=k3FUWWEwgfc</td>
-      <td>Short-Term Memory with LangGraph</td>
+      <td rowspan="1"><strong>Tutorial</strong></td>
+      <td>https://world-model-tutorial.github.io/</td>
+      <td>CVPR 2025 Tutorial: From Video Generation to World Model</td>
     </tr>
   </tbody>
 </table>
