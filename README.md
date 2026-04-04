@@ -177,14 +177,13 @@ Papers below are ordered by **publication date**:
     </tr>
     <tr>
       <td rowspan="2" style="width: 15%;">2026-03-05</td>
-      <td style="width: 55%;"><strong>Beyond the Context Window: A Cost-Performance Analysis of Fact-Based Memory vs. Long-Context LLMs for Persistent Agents</strong></td>
+      <td style="width: 55%;"><strong>Learning to Model the World: A Survey of World Models in Artificial Intelligence</strong></td>
       <td style="width: 15%;">
         <img src="https://img.shields.io/badge/Long%20Context-blue" alt="Long Context">
-        <img src="https://img.shields.io/badge/Cost%20Analysis-brightgreen" alt="Cost Analysis">
       </td>
-      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.04814">
-        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-      </a></td>
+      <td style="width: 15%;"><a href="https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.177274570.09578608/v1">
+      <img src="https://img.shields.io/badge/TechRxiv-Paper-orange" alt="TechRxiv Badge">
+    </a></td>
     </tr>
   </table>
 </details>
