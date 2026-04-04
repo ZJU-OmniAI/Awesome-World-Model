@@ -121,10 +121,8 @@ To systematically organize the diverse research and practical resources in the f
   - [Survey](#survey)
   - [Framework & Methods](#framework-methods)
   - [Datasets & Benchmark](#datasets-benchmark)
-  - [Systems & Models](#systems-models)
 - [Resources](#resources)
   - [Benchmarks and Tasks](#benchmarks-and-tasks)
-  - [Systems and Open Sources](#systems-and-open-sources)
   - [Multi-media Resource](#multi-media-resource)
 - [Make a Contribution](#make-a-contribution)
 - [Community and Support](#community-and-support)
@@ -201,12 +199,12 @@ Papers below are ordered by **publication date**:
     </tr>
     <tr>
       <td rowspan="2" style="width: 15%;">2026-03-11</td>
-      <td style="width: 55%;"><strong>Governing Evolving Memory in LLM Agents: Risks, Mechanisms, and the Stability and Safety Governed Memory (SSGM) Framework</strong></td>
+      <td style="width: 55%;"><strong>EVA: Aligning Video World Models with Executable Robot Actions via Inverse Dynamics Rewards</strong></td>
       <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/safety-red" alt="safety">
-        <img src="https://img.shields.io/badge/Evolution-brightgreen" alt="Evolution">
+        <img src="https://img.shields.io/badge/RL Training-red" alt="safety">
+        <img src="https://img.shields.io/badge/Physical Consistency-yellow" alt="Evolution">
       </td>
-      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.11768v1">
+      <td style="width: 15%;"><a href="[https://arxiv.org/abs/2406.08407">
         <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
       </a></td>
     </tr>
@@ -237,51 +235,6 @@ Papers below are ordered by **publication date**:
   </table>
 </details>
 
-<a id="systems-models"></a>
-<details>
-  <summary><strong>Systems & Models</strong></summary>
-
-  <table style="width: 100%;">
-    <tr>
-      <td><strong>Date</strong></td>
-      <td><strong>Paper & Summary</strong></td>
-      <td><strong>Tags</strong></td>
-      <td><strong>Links</strong></td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="width: 15%;">2026-03-15</td>
-      <td style="width: 55%;"><strong>SuperLocalMemory V3: Information-Geometric Foundations for Zero-LLM Enterprise Agent Memory</strong></td>
-      <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/Information%20Geometry-red" alt="Information Geometry">
-        <img src="https://img.shields.io/badge/Agent%20Memory-teal" alt="Agent Memory">
-        <img src="https://img.shields.io/badge/Data%20Sovereignty-blue" alt="Data Sovereignty">
-      </td>
-      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.14588">
-        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-      </a></td>
-    </tr>
-    <!-- <tr>
-      <td rowspan="2" style="width: 15%;">2024-09-21</td>
-      <td style="width: 55%;"><strong>Memory3: Language modeling with explict memory</strong></td>
-      <td style="width: 15%;"><img src="https://img.shields.io/badge/Base%20Model-darkred" alt="Base Model">
-      <img src="https://img.shields.io/badge/Explicit%20Memory-darkgreen" alt="Explicit Memory">
-      <img src="https://img.shields.io/badge/Memory%20Circuit-slateblue" alt="Memory Circuit">
-      <img src="https://img.shields.io/badge/Long--Context%20Models-royalblue" alt="Long-Context Models">
-      </td>
-      <td style="width: 15%;"><a href="https://doi.org/10.4208/jml.240708">
-      <img src="https://img.shields.io/badge/Journal%20of%20ML-Paper-black?labelColor=blueviolet" alt="Journal of ML Paper">
-      </a></td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        • Memory3 is a novel large language model that introduces explicit memory to reduce training and inference costs.<br>
-        • The study proposes a memory circuit theory that describes the process of memory externalization, clarifies the definition of knowledge, and highlights the model’s advantages in handling long contexts.<br>
-        • Memory3 effectively manages the costs of knowledge writing and reading, and employs compression techniques to significantly reduce the storage requirements of explicit memory.
-      </td>
-    </tr> -->
-  </table>
-</details>
-
 <a id="resources"></a>
 ## 🧰 Resources
 
@@ -291,14 +244,6 @@ Papers below are ordered by **publication date**:
 | Task Type | Benchmarks & Datasets |
 | :--: | -- |
 | **Physical Consistency** | [MMWorld](https://arxiv.org/abs/2406.08407) |
-
-<a id="systems-and-open-sources"></a>
-### 💻 Systems and Open Sources
-Systems below are ordered by **publication date**:
-
-| System | Time | Stars | GitHub & Website |
-|--|--|--|--|
-| Zep | 2023-05-19 | ![GitHub Repo stars](https://img.shields.io/github/stars/getzep/zep?style=social) | https://github.com/getzep/zep<br>https://www.getzep.com/ |
 
 <a id="multi-media-resource"></a>
 ### 🎥 Multi-media Resource
@@ -316,16 +261,6 @@ Systems below are ordered by **publication date**:
       <td rowspan="1"><strong>Basic Theory of Memory</strong></td>
       <td>https://www.youtube.com/watch?v=k3FUWWEwgfc</td>
       <td>Short-Term Memory with LangGraph</td>
-    </tr>
-    <tr>
-      <td rowspan="1"><strong>Memory-Related Tools</strong></td>
-      <td>https://www.bilibili.com/video/BV1hom8YAEhX</td>
-      <td>LLMs as Operating Systems: Agent Memory</td>
-    </tr>
-    <tr>
-      <td rowspan="1"><strong>Memory-Related Papers</strong></td>
-      <td>https://www.bilibili.com/video/BV1XT8ez6E46</td>
-      <td>AI agent Survey Memory</td>
     </tr>
   </tbody>
 </table>
