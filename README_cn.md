@@ -11,8 +11,6 @@
 [![Awesome](https://awesome.re/badge.svg)](https://github.com/IAAR-Shanghai/Awesome-AI-Memory) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![](https://img.shields.io/badge/PRs-Welcome-red)
-[![Papers](https://img.shields.io/badge/Papers-285-blue.svg)](https://github.com/IAAR-Shanghai/Awesome-AI-Memory/papers)
-[![Open Source Projects](https://img.shields.io/badge/Open%20Source%20Projects-89-green.svg)](https://github.com/IAAR-Shanghai/Awesome-AI-Memory/projects)
 
 
 ## 👋 简介
@@ -5851,7 +5849,7 @@ Summary:
 
 - **GitHub Issues**: 在我们的 <a href="https://github.com/pm1255/Awesome-World-Model/issues" target="_blank">GitHub Issues</a> 中报告问题或提出功能需求。  
 - **GitHub Pull Requests**: 通过 <a href="https://github.com/pm1255/Awesome-World-Model/pulls" target="_blank">Pull Requests</a> 提交代码改进。  
-- **Rednote**: 扫描下方二维码加入我们的讨论组，获取最新的World Model相关的研究信息，或推广您的相关研究成果。
+- **小红书**: 扫描下方二维码加入我们的讨论组，获取最新的World Model相关的研究信息，或推广您的相关研究成果。
 
 <!-- <div style="text-align: center;">
   <img src="assets/rednote-qr-code.jpg" alt="QR Code" width="255">
