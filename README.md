@@ -185,9 +185,9 @@ Papers below are ordered by **publication date**:
     </tr>
     <tr>
       <td colspan="3">
-            • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
-            • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
-            • Long-context models demonstrate advantages in factual recall, but their costs increase with each interaction turn; at a 100k context length, memory systems surpass them in cost efficiency after approximately 10 turns, providing a quantitative basis for real-world engineering decisions.
+            • This survey provides a structured overview of world models in artificial intelligence, showing how the field has evolved from classical predictive state modeling and latent-dynamics learning toward more general paradigms enabled by large-scale generative and multimodal foundation models.<br>
+            • It organizes existing approaches into several representative categories, including observation-level generative world models, latent-space world models, reinforcement-learning-based world models, and object-centric methods for structured environment modeling.<br>
+            • The paper also reviews major application domains such as robotics, autonomous driving, scientific discovery, game simulation, and GUI agents, while summarizing benchmarks, evaluation metrics, simulation platforms, and key open challenges including long-horizon consistency, generalization, and trustworthiness.
         </td>
     <\tr>
   </table>
@@ -217,9 +217,9 @@ Papers below are ordered by **publication date**:
     </tr>
       <tr>
       <td colspan="3">
-            • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
-            • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
-            • Long-context models demonstrate advantages in factual recall, but their costs increase with each interaction turn; at a 100k context length, memory systems surpass them in cost efficiency after approximately 10 turns, providing a quantitative basis for real-world engineering decisions.
+            • This paper studies a central issue in robotic video world models: generated visual rollouts may appear plausible, yet still fail to correspond to physically executable and kinematically consistent robot actions, creating what the authors call the executability gap.<br>
+            • To address this problem, the paper proposes EVA, a reinforcement-learning-based post-training framework that first trains an inverse dynamics model on real robot trajectories and then repurposes it as a reward model to evaluate generated videos through the action sequences they imply.<br>
+            • By encouraging smoother velocity, acceleration, and jerk profiles while penalizing unstable or embodiment-violating actions, EVA reduces robot-specific artifacts in generated rollouts and improves downstream execution success on both the RoboTwin benchmark and a real bimanual robot platform.
         </td>
     <\tr>
   </table>
@@ -248,9 +248,9 @@ Papers below are ordered by **publication date**:
     </tr>
       <tr>
       <td colspan="3">
-            • Addresses the ongoing industry debate over the performance and cost trade-offs between long-context models and external memory systems for building persistent agents.<br>
-            • Conducts a systematic cross-benchmark evaluation of long-context approaches and fact-based external memory solutions across three major memory benchmarks, assessing both accuracy and cumulative API inference cost.<br>
-            • Long-context models demonstrate advantages in factual recall, but their costs increase with each interaction turn; at a 100k context length, memory systems surpass them in cost efficiency after approximately 10 turns, providing a quantitative basis for real-world engineering decisions.
+            • MMWorld introduces a video benchmark for evaluating world-model-like capabilities in multimodal models, with a particular focus on understanding real-world dynamics, causality, and complex temporal processes.<br>
+            • Its two defining properties are multi-discipline coverage, spanning 7 broad disciplines and 69 subdisciplines, and multi-faceted reasoning, including explanation, counterfactual reasoning, and future prediction.<br>
+            • The benchmark contains 1,910 videos, 6,627 question-answer pairs, and associated captions. Experimental results show that even strong proprietary and open-source multimodal models still struggle on MMWorld, indicating substantial room for improvement in video-based world understanding and evaluation.
         </td>
     <\tr>
   </table>
