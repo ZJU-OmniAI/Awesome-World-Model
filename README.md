@@ -226,12 +226,11 @@ Papers below are ordered by **publication date**:
     </tr>
     <tr>
       <td rowspan="2" style="width: 15%;">2026-03-04</td>
-      <td style="width: 55%;"><strong>Towards Realistic Personalization: Evaluating Long-Horizon Preference Following in Personalized User-LLM Interactions</strong></td>
+      <td style="width: 55%;"><strong>MMWorld: Towards Multi-discipline Multi-faceted World Model Evaluation in Videos</strong></td>
       <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/Personalized-yellow" alt="Personalized">
-        <img src="https://img.shields.io/badge/Interaction-blue" alt="Interaction">
+        <img src="https://img.shields.io/badge/Physics Consistency-yellow" alt="Personalized">
       </td>
-      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.04191">
+      <td style="width: 15%;"><a href="https://arxiv.org/abs/2406.08407">
         <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
       </a></td>
     </tr>
