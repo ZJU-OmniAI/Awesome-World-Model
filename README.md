@@ -1,18 +1,18 @@
 # Awesome-AI-Memory
 
 <p align="center">
-    【English | <a href="README_cn.md">中文</a></a>】
+    【English | <a href="README_cn.md">中文</a>】
 </p>
 
 <div align="center">
     <img src="assets/Gemini_Generated_Image_awesome_world_model.png" alt="Survey Framework" width="82%">
 </div>
 
-[![Awesome](https://awesome.re/badge.svg)](https://github.com/IAAR-Shanghai/Awesome-AI-Memory) 
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/IAAR-Shanghai/Awesome-AI-Memory)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![](https://img.shields.io/badge/PRs-Welcome-red)
 
-
+<a id="introduction"></a>
 ## 👋 Introduction
 Current Artificial Intelligence, especially in Reinforcement Learning (RL) and Autonomous Agents, still faces immense challenges when planning and decision-making in complex, dynamic, and unpredictable real-world environments. Traditional "Model-Free" approaches often rely heavily on extensive trial-and-error, resulting in extremely low data efficiency and poor generalization to unseen scenarios. Even Large Language Models (LLMs), which excel in other domains, often exhibit brittle reasoning and unrealistic planning due to a fundamental lack of understanding of physical laws (i.e., lacking "common sense").
 
@@ -20,45 +20,34 @@ To overcome these bottlenecks, World Models have emerged as a critical research 
 
 Awesome-World-Model is a curated list of resources focused on AI World Models and their applications across various domains, including Reinforcement Learning, Embodied AI, Autonomous Driving, and Multimodal Perception. It systematically compiles relevant research papers, open-source frameworks, benchmarks, and cutting-edge practices. This repository is dedicated to organizing and presenting the rapidly evolving landscape of World Model research, connecting multiple fields such as Deep Learning, Generative Models (especially Video Generation), Control Theory, Computer Vision, and Cognitive Science.
 
-
 ---
 
+<a id="goal-of-repository"></a>
 ## 🎯 Goal of Repository
 Our mission is to establish a centralized, continuously evolving knowledge base that serves as a valuable reference for researchers and practitioners, ultimately accelerating the development of intelligent systems capable of long-term memory retention, sustained reasoning, and adaptive evolution over time.
 
 ---
 
+<a id="project-scope"></a>
 ## 📏 Project Scope
 This repository focuses on mechanisms, architectures, and applications that enable AI systems to build internal mental models of the external world (encompassing physical, causal, and social laws), rather than general generative models (unless specifically related to video/image generation as a world simulator). The content spans from foundational theoretical research (e.g., representation learning) to concrete engineering practices (e.g., simulators and deployment).
 
 🌀 Included Content (In Scope)
 - World Model Architectural Design: Latent Space Models specifically designed for learning Environment Dynamics, Predictive Coding architectures, and recurrent networks (RNNs/Transformers) serving as Transition Models.
-
 - Representation Learning for World Models: Learning representations that are causal, physically meaningful, or Object-Centric, and the application of Self-Supervised Learning (SSL) in constructing world models.
-
 - Simulation and Imagination Mechanisms: Using generative video/image models (e.g., Diffusion Models, GANs) as interactive World Simulators, and agent "Dreaming" or "Simulation-in-the-head" within internal models.
-
 - Model-Based Planning and Control (MPC): Decision-making methods that combine World Models with Trajectory Planning, Tree Search (e.g., MCTS), or Gradient Descent optimization.
-
 - Model-Based Reinforcement Learning (MBRL): Using learned World Models to accelerate Policy Optimization; offline or online RL via "imagination."
-
 - Domain-Specific Applications: World Models for Autonomous Driving, Embodied Robotic manipulation, navigation, and scientific simulations.
-
 - Cognitive Science and Biological Inspiration: Neuroscience models of how the Hippocampus or Neocortex builds environmental maps, and their implications for AI World Models.
-
 - Evaluation and Benchmarking: Benchmarks and Datasets specifically for measuring World Model prediction accuracy, planning efficiency, data efficiency, and generalization.
-
 - Open-Source Frameworks and Tools: Repositories and Simulation Environments dedicated to building and testing World Models.
 
 🌀 Excluded Content (Out of Scope)
 - General Video or Image Generation Research: If the purpose is not serving as a world model to support agent planning or understanding (e.g., general art generation, unconditional video interpolation).
-
 - General Model-Free Reinforcement Learning: Unless it demonstrates a combination with World Models (e.g., as a baseline in Actor-Critic, but the focus isn't the world model itself).
-
 - Pure Large Language Model (LLM) Reasoning: Unless the research specifically focuses on LLMs as a logical or common-sense model of the world applied to physical entities.
-
 - Traditional Deterministic Physics Simulators: Unless focused on learning (Leaning from Data) physical laws, or used as a tool for building data-driven world models.
-
 - Generic Machine Learning or Computer Vision Methods: Lacking a direct World Model application scenario.
 
 ---
@@ -116,24 +105,33 @@ To systematically organize the diverse research and practical resources in the f
 
 --- -->
 
+<a id="recent-hot-research-and-news"></a>
 ## 🔔 Recent hot research and news
 + 2026-4-4 – 🎉 Initial Repo
 
 ---
 
-🗺️ Table of Contents
-- [Introduction](#-introduction)
-- [Goal of Repository](#-goal-of-repository)
-- [Project Scope](#-project-scope)
-- [Recent hot research and news](#-Recent-hot-research-and-news)
-- [Core Concepts](#-core-concepts)
-- [Paper List](#-paper-list)
-- [Resource](#-resource)
+## 🗺️ Table of Contents
+- [Introduction](#introduction)
+- [Goal of Repository](#goal-of-repository)
+- [Project Scope](#project-scope)
+- [Recent hot research and news](#recent-hot-research-and-news)
+- [Core Concepts](#core-concepts)
+- [Paper List](#paper-list)
+  - [Survey](#survey)
+  - [Framework & Methods](#framework-methods)
+  - [Datasets & Benchmark](#datasets-benchmark)
+  - [Systems & Models](#systems-models)
+- [Resources](#resources)
+  - [Benchmarks and Tasks](#benchmarks-and-tasks)
+  - [Systems and Open Sources](#systems-and-open-sources)
+  - [Multi-media Resource](#multi-media-resource)
 - [Community and Support](#community-and-support)
-- [Make a Contribution](#-Make-a-Contribution)
+- [Make a Contribution](#make-a-contribution)
 
 ---
 
+<a id="core-concepts"></a>
 ## 🧠 Core Concepts
 
 - LLM Memory: A fusion of implicit knowledge encoded within parameters (acquired during training) and explicit storage outside parameters (retrieved at runtime), enabling models to transcend token limitations and possess human-like abilities to "remember the past, understand the present, and predict the future."
@@ -214,9 +212,11 @@ To systematically organize the diverse research and practical resources in the f
 
 ---
 
+<a id="paper-list"></a>
 ## 📚 Paper List
 Papers below are ordered by **publication date**:
 
+<a id="survey"></a>
 <details>
   <summary><strong>Survey</strong></summary>
 
@@ -227,24 +227,21 @@ Papers below are ordered by **publication date**:
       <td><strong>Tags</strong></td>
       <td><strong>Links</strong></td>
     </tr>
-        <tr>
-        <td rowspan="2" style="width: 15%;">2026-03-05</td>
-        <td style="width: 55%;"><strong>Beyond the Context Window: A Cost-Performance Analysis of Fact-Based Memory vs. Long-Context LLMs for Persistent Agents</strong></td>
-        <td style="width: 15%;">
-            <img src="https://img.shields.io/badge/Long%20Context-blue" alt="Long Context">
-            <img src="https://img.shields.io/badge/Cost%20Analysis-brightgreen" alt="Cost Analysis">
-        </td>
-        <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.04814">
-            <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-        </a></td>
+    <tr>
+      <td rowspan="2" style="width: 15%;">2026-03-05</td>
+      <td style="width: 55%;"><strong>Beyond the Context Window: A Cost-Performance Analysis of Fact-Based Memory vs. Long-Context LLMs for Persistent Agents</strong></td>
+      <td style="width: 15%;">
+        <img src="https://img.shields.io/badge/Long%20Context-blue" alt="Long Context">
+        <img src="https://img.shields.io/badge/Cost%20Analysis-brightgreen" alt="Cost Analysis">
+      </td>
+      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.04814">
+        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
+      </a></td>
     </tr>
   </table>
 </details>
 
-
-
-
-
+<a id="framework-methods"></a>
 <details>
   <summary><strong>Framework & Methods</strong></summary>
 
@@ -255,27 +252,21 @@ Papers below are ordered by **publication date**:
       <td><strong>Tags</strong></td>
       <td><strong>Links</strong></td>
     </tr>
-      <tr>
-        <td rowspan="2" style="width: 15%;">2026-03-11</td>
-        <td style="width: 55%;"><strong>Governing Evolving Memory in LLM Agents: Risks, Mechanisms, and the Stability and Safety Governed Memory (SSGM) Framework</strong></td>
-        <td style="width: 15%;">
-          <img src="https://img.shields.io/badge/safety-red" alt="safety">
-          <img src="https://img.shields.io/badge/Evolution-brightgreen" alt="Evolution">
-        </td>
-        <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.11768v1">
-          <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-        </a></td>
-      </tr>
+    <tr>
+      <td rowspan="2" style="width: 15%;">2026-03-11</td>
+      <td style="width: 55%;"><strong>Governing Evolving Memory in LLM Agents: Risks, Mechanisms, and the Stability and Safety Governed Memory (SSGM) Framework</strong></td>
+      <td style="width: 15%;">
+        <img src="https://img.shields.io/badge/safety-red" alt="safety">
+        <img src="https://img.shields.io/badge/Evolution-brightgreen" alt="Evolution">
+      </td>
+      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.11768v1">
+        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
+      </a></td>
+    </tr>
   </table>
 </details>
 
-
-
-
-
-
-
-
+<a id="datasets-benchmark"></a>
 <details>
   <summary><strong>Datasets & Benchmark</strong></summary>
 
@@ -287,23 +278,20 @@ Papers below are ordered by **publication date**:
       <td><strong>Links</strong></td>
     </tr>
     <tr>
-        <td rowspan="2" style="width: 15%;">2026-03-04</td>
-        <td style="width: 55%;"><strong>Towards Realistic Personalization: Evaluating Long-Horizon Preference Following in Personalized User-LLM Interactions</strong></td>
-        <td style="width: 15%;">
-            <img src="https://img.shields.io/badge/Personalized-yellow" alt="Personalized">
-            <img src="https://img.shields.io/badge/Interaction-blue" alt="Interaction">
-        </td>
-        <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.04191">
-            <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-        </a></td>
+      <td rowspan="2" style="width: 15%;">2026-03-04</td>
+      <td style="width: 55%;"><strong>Towards Realistic Personalization: Evaluating Long-Horizon Preference Following in Personalized User-LLM Interactions</strong></td>
+      <td style="width: 15%;">
+        <img src="https://img.shields.io/badge/Personalized-yellow" alt="Personalized">
+        <img src="https://img.shields.io/badge/Interaction-blue" alt="Interaction">
+      </td>
+      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.04191">
+        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
+      </a></td>
     </tr>
   </table>
 </details>
 
-
-
-
-
+<a id="systems-models"></a>
 <details>
   <summary><strong>Systems & Models</strong></summary>
 
@@ -314,18 +302,18 @@ Papers below are ordered by **publication date**:
       <td><strong>Tags</strong></td>
       <td><strong>Links</strong></td>
     </tr>
-      <tr>
-          <td rowspan="2" style="width: 15%;">2026-03-15</td>
-          <td style="width: 55%;"><strong>SuperLocalMemory V3: Information-Geometric Foundations for Zero-LLM Enterprise Agent Memory</strong></td>
-          <td style="width: 15%;">
-              <img src="https://img.shields.io/badge/Information%20Geometry-red" alt="Information Geometry">
-              <img src="https://img.shields.io/badge/Agent%20Memory-teal" alt="Agent Memory">
-              <img src="https://img.shields.io/badge/Data%20Sovereignty-blue" alt="Data Sovereignty">
-          </td>
-          <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.14588">
-              <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-          </a></td>
-      </tr>
+    <tr>
+      <td rowspan="2" style="width: 15%;">2026-03-15</td>
+      <td style="width: 55%;"><strong>SuperLocalMemory V3: Information-Geometric Foundations for Zero-LLM Enterprise Agent Memory</strong></td>
+      <td style="width: 15%;">
+        <img src="https://img.shields.io/badge/Information%20Geometry-red" alt="Information Geometry">
+        <img src="https://img.shields.io/badge/Agent%20Memory-teal" alt="Agent Memory">
+        <img src="https://img.shields.io/badge/Data%20Sovereignty-blue" alt="Data Sovereignty">
+      </td>
+      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.14588">
+        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
+      </a></td>
+    </tr>
     <!-- <tr>
       <td rowspan="2" style="width: 15%;">2024-09-21</td>
       <td style="width: 55%;"><strong>Memory3: Language modeling with explict memory</strong></td>
@@ -345,28 +333,29 @@ Papers below are ordered by **publication date**:
         • Memory3 effectively manages the costs of knowledge writing and reading, and employs compression techniques to significantly reduce the storage requirements of explicit memory.
       </td>
     </tr> -->
-
   </table>
-
 </details>
 
+<a id="resources"></a>
 ## 🧰 Resources
 
+<a id="benchmarks-and-tasks"></a>
 ### 📊 Benchmarks and Tasks
 
-|     Task Type      | Benchmarks \& Datasets                                                  |
-| :-----------------------: | ------------------------------------------------------------ |
-| **Personalized Task Evaluation**  | [IMPLEXCONV](https://aclanthology.org/2025.emnlp-main.580.pdf), [PERSONAMEM](https://arxiv.org/pdf/2504.14225), [PERSONAMEM-v2](https://www.arxiv.org/pdf/2512.06688), [PersonaBench](https://aclanthology.org/2025.findings-acl.49.pdf), [PersonaFeedback](https://arxiv.org/pdf/2506.12915), [LaMP](https://aclanthology.org/2024.acl-long.399.pdf), [MemDaily](https://arxiv.org/pdf/2409.20163), [MPR](https://arxiv.org/pdf/2508.13250), [KnowMe-Bench](https://arxiv.org/abs/2601.04745)  |
+| Task Type | Benchmarks & Datasets |
+| :--: | -- |
+| **Personalized Task Evaluation** | [IMPLEXCONV](https://aclanthology.org/2025.emnlp-main.580.pdf), [PERSONAMEM](https://arxiv.org/pdf/2504.14225), [PERSONAMEM-v2](https://www.arxiv.org/pdf/2512.06688), [PersonaBench](https://aclanthology.org/2025.findings-acl.49.pdf), [PersonaFeedback](https://arxiv.org/pdf/2506.12915), [LaMP](https://aclanthology.org/2024.acl-long.399.pdf), [MemDaily](https://arxiv.org/pdf/2409.20163), [MPR](https://arxiv.org/pdf/2508.13250), [KnowMe-Bench](https://arxiv.org/abs/2601.04745) |
 
-
+<a id="systems-and-open-sources"></a>
 ### 💻 Systems and Open Sources
 Systems below are ordered by **publication date**:
 
-| System      | Time       | Stars | GitHub & Website |
-|-------------|------------|-------|------------------|
-| Zep         | 2023-05-19 | ![GitHub Repo stars](https://img.shields.io/github/stars/getzep/zep?style=social) | https://github.com/getzep/zep<br>https://www.getzep.com/ |
+| System | Time | Stars | GitHub & Website |
+|--|--|--|--|
+| Zep | 2023-05-19 | ![GitHub Repo stars](https://img.shields.io/github/stars/getzep/zep?style=social) | https://github.com/getzep/zep<br>https://www.getzep.com/ |
 
-### 🎥 Multi-media resource
+<a id="multi-media-resource"></a>
+### 🎥 Multi-media Resource
 
 <table>
   <thead>
@@ -395,9 +384,9 @@ Systems below are ordered by **publication date**:
   </tbody>
 </table>
 
-
-## 🤝  Make a Contribution
-Issue Template: 
+<a id="make-a-contribution"></a>
+## 🤝 Make a Contribution
+Issue Template:
 ```
 Title: [paper's title]
 Head: [head name1] (, [head name2] ...)
@@ -405,9 +394,10 @@ Published: [arXiv / ACL / ICLR / NIPS / ...]
 Summary:
   - Innovation:
   - Tasks:
-  - Significant Result: 
+  - Significant Result:
 ```
 
+<a id="community-and-support"></a>
 ## 💬 Community and Support
 
 Join our community to ask questions, share your projects, and connect with other developers.
@@ -431,4 +421,3 @@ Join our community to ask questions, share your projects, and connect with other
     </td>
   </tr>
 </table>
-
