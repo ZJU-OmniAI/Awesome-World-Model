@@ -190,7 +190,7 @@ Awesome-World-Model 是一个专门围绕 AI 世界模型（World Models）及�
         <img src="https://img.shields.io/badge/RL Training-red" alt="safety">
         <img src="https://img.shields.io/badge/Physical Consistency-yellow" alt="Evolution">
       </td>
-      <td style="width: 15%;"><a href="[https://arxiv.org/abs/2406.08407">
+      <td style="width: 15%;"><a href="https://arxiv.org/abs/2406.08407">
         <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
       </a></td>
     </tr>
