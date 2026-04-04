@@ -189,7 +189,7 @@ Papers below are ordered by **publication date**:
             • It organizes existing approaches into several representative categories, including observation-level generative world models, latent-space world models, reinforcement-learning-based world models, and object-centric methods for structured environment modeling.<br>
             • The paper also reviews major application domains such as robotics, autonomous driving, scientific discovery, game simulation, and GUI agents, while summarizing benchmarks, evaluation metrics, simulation platforms, and key open challenges including long-horizon consistency, generalization, and trustworthiness.
         </td>
-    <\tr>
+    </tr>
   </table>
 </details>
 
@@ -221,7 +221,7 @@ Papers below are ordered by **publication date**:
             • To address this problem, the paper proposes EVA, a reinforcement-learning-based post-training framework that first trains an inverse dynamics model on real robot trajectories and then repurposes it as a reward model to evaluate generated videos through the action sequences they imply.<br>
             • By encouraging smoother velocity, acceleration, and jerk profiles while penalizing unstable or embodiment-violating actions, EVA reduces robot-specific artifacts in generated rollouts and improves downstream execution success on both the RoboTwin benchmark and a real bimanual robot platform.
         </td>
-    <\tr>
+    </tr>
   </table>
 </details>
 
@@ -252,7 +252,7 @@ Papers below are ordered by **publication date**:
             • Its two defining properties are multi-discipline coverage, spanning 7 broad disciplines and 69 subdisciplines, and multi-faceted reasoning, including explanation, counterfactual reasoning, and future prediction.<br>
             • The benchmark contains 1,910 videos, 6,627 question-answer pairs, and associated captions. Experimental results show that even strong proprietary and open-source multimodal models still struggle on MMWorld, indicating substantial room for improvement in video-based world understanding and evaluation.
         </td>
-    <\tr>
+    </tr>
   </table>
 </details>
 
