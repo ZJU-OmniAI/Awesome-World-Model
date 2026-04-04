@@ -297,16 +297,6 @@ To systematically organize the diverse research and practical resources in the f
 |     任务类型      | 数据集和评估基准                                                  |
 | :-----------------------: | ------------------------------------------------------------ |
 | **个性化任务评估**  | [IMPLEXCONV](https://aclanthology.org/2025.emnlp-main.580.pdf), [PERSONAMEM](https://arxiv.org/pdf/2504.14225), [PERSONAMEM-v2](https://www.arxiv.org/pdf/2512.06688), [PersonaBench](https://aclanthology.org/2025.findings-acl.49.pdf), [PersonaFeedback](https://arxiv.org/pdf/2506.12915), [LaMP](https://aclanthology.org/2024.acl-long.399.pdf), [MemDaily](https://arxiv.org/pdf/2409.20163), [MPR](https://arxiv.org/pdf/2508.13250), [KnowMe-Bench](https://arxiv.org/abs/2601.04745)  |
-|  **综合评价**   | [MemoryAgentBench](https://arxiv.org/pdf/2507.05257), [LifelongAgentBench](https://arxiv.org/pdf/2505.11942), [StreamBench](https://arxiv.org/pdf/2406.08747) |
-|  **记忆机制评价**   | [MemBench](https://aclanthology.org/2025.findings-acl.989.pdf),  [Minerva](https://arxiv.org/pdf/2502.03358), [MemoryBench](https://arxiv.org/pdf/2510.17281) |
-|  **长期记忆评估**   | [LOCCO](https://aclanthology.org/2025.findings-acl.1014.pdf), [LONGMEMEVAL](https://arxiv.org/pdf/2410.10813), [LOCOMO](https://aclanthology.org/2024.acl-long.747.pdf), [MADial-Bench](https://arxiv.org/abs/2409.15240), [StoryBench](https://arxiv.org/pdf/2506.13356), [DialSim](https://arxiv.org/pdf/2406.13144), [Mem-Gallery](https://arxiv.org/pdf/2601.03515), [RealMem](https://arxiv.org/pdf/2601.06966), [CloneMem](https://arxiv.org/pdf/2601.07023) |
-|  **长对话推理**   | [PREFEVAL](https://arxiv.org/pdf/2502.09597),  [MiniLongBench](https://aclanthology.org/2025.acl-long.560.pdf)|
-|  **长上下文理解**   | [LongBench V2](https://arxiv.org/pdf/2412.15204), [LongBench](https://arxiv.org/abs/2308.14508), [BABILong](https://arxiv.org/pdf/2406.10149), [HotpotQA](https://aclanthology.org/D18-1259.pdf) |
-|  **长上下文评估** |[SCBENCH](https://arxiv.org/abs/2412.10319), [L-CiteEval](https://arxiv.org/pdf/2410.02115), [GLE](https://aclanthology.org/2024.acl-long.859/), [HOMER](https://arxiv.org/pdf/2404.10308), [RULER](https://arxiv.org/pdf/2404.06654), [MM-Needle](https://aclanthology.org/2025.naacl-long.166.pdf) |
-|  **长文本生成**   | [LongGenBench](https://arxiv.org/pdf/2409.02076) |
-|  **情景记忆评估**   | [PerLTQA](https://aclanthology.org/2024.sighan-1.18.pdf)|
-|  **记忆幻觉评估**   | [HaluMem](https://arxiv.org/pdf/2511.03506) |
-|  **Web交互与导航** | [WebChoreArena](https://arxiv.org/pdf/2506.01952), [MT-Mind2Web](https://arxiv.org/pdf/2402.15057), [WebShop](https://arxiv.org/pdf/2207.01206), [WebArena](https://arxiv.org/pdf/2307.13854) |
 
 
 ### 💻 开源系统
@@ -315,38 +305,7 @@ To systematically organize the diverse research and practical resources in the f
 | 系统      | 时间       | 关注数 | 开源网址和官方网站 |
 |-------------|------------|-------|------------------|
 | Zep         | 2023-05-19 | ![GitHub Repo stars](https://img.shields.io/github/stars/getzep/zep?style=social) | https://github.com/getzep/zep<br>https://www.getzep.com/ |
-| Agentmemory | 2023-07-07 | ![GitHub Repo stars](https://img.shields.io/github/stars/elizaOS/agentmemory?style=social) | https://github.com/elizaOS/agentmemory<br>No official website |
-| Cognee      | 2023-10-09 | ![GitHub Repo stars](https://img.shields.io/github/stars/topoteretes/cognee?style=social) | https://github.com/topoteretes/cognee<br>https://www.cognee.ai/ |
-| Letta       | 2023-10-26 | ![GitHub Repo stars](https://img.shields.io/github/stars/letta-ai/letta?style=social) | https://github.com/letta-ai/letta<br>https://www.letta.com/ |
-| Supermemory | 2024-02-22 | ![GitHub Repo stars](https://img.shields.io/github/stars/supermemoryai/supermemory?style=social) | https://github.com/supermemoryai/supermemory<br>https://supermemory.ai/ |
-| Memary      | 2024-04-26 | ![GitHub Repo stars](https://img.shields.io/github/stars/kingjulio8238/Memary?style=social) | https://github.com/kingjulio8238/Memary <br>No official website |
-| Second-Me   | 2024-06-26 | ![GitHub Repo stars](https://img.shields.io/github/stars/mindverse/Second-Me?style=social) | https://github.com/mindverse/Second-Me<br>https://home.second.me/ |
-| Mem0        | 2024-07-11 | ![GitHub Repo stars](https://img.shields.io/github/stars/mem0ai/mem0?style=social) | https://github.com/mem0ai/mem0<br>https://mem0.ai/ |
-| Memobase    | 2024-10-05 | ![GitHub Repo stars](https://img.shields.io/github/stars/memodb-io/memobase?style=social) | https://github.com/memodb-io/memobase<br>https://www.memobase.io/ |
-| LangMem     | 2025-01-22 | ![GitHub Repo stars](https://img.shields.io/github/stars/langchain-ai/langmem?style=social) | https://github.com/langchain-ai/langmem<br>https://langchain-ai.github.io/langmem/ |
-| A-Mem       | 2025-02-17 | ![GitHub Repo stars](https://img.shields.io/github/stars/agiresearch/A-mem?style=social) | https://github.com/agiresearch/A-mem <br>No official website |
-| Mirix       | 2025-04-16 | ![GitHub Repo stars](https://img.shields.io/github/stars/Mirix-AI/MIRIX?style=social) | https://github.com/Mirix-AI/MIRIX<br>https://mirix.io/ |
-| MemEngine   | 2025-05-04 | ![GitHub Repo stars](https://img.shields.io/github/stars/nuster1128/MemEngine?style=social) | https://github.com/nuster1128/MemEngine<br>No official website |
-| MemOS       | 2025-05-28 | ![GitHub Repo stars](https://img.shields.io/github/stars/MemTensor/MemOS?style=social) | https://github.com/MemTensor/MemOS<br>https://memos.openmem.net/ |
-| MemoryOS    | 2025-05-30 | ![GitHub Repo stars](https://img.shields.io/github/stars/BAI-LAB/MemoryOS?style=social) | https://github.com/BAI-LAB/MemoryOS<br>https://baijia.online/memoryos/ |
-| ReMe        | 2025-06-05 | ![GitHub Repo stars](https://img.shields.io/github/stars/agentscope-ai/ReMe?style=social) | https://github.com/agentscope-ai/ReMe<br>https://reme.agentscope.io/ |
-| Nemori      | 2025-06-30 | ![GitHub Repo stars](https://img.shields.io/github/stars/nemori-ai/nemori?style=social) | https://github.com/nemori-ai/nemori <br>No official website |
-| Memori      | 2025-07-24 | ![GitHub Repo stars](https://img.shields.io/github/stars/MemoriLabs/Memori?style=social) | https://github.com/MemoriLabs/Memori<br>https://memorilabs.ai/ |
-| MemU        | 2025-08-09 | ![GitHub Repo stars](https://img.shields.io/github/stars/NevaMind-AI/memU?style=social) | https://github.com/NevaMind-AI/memU<br>https://memu.pro/ |
-| MemMachine  | 2025-08-16 | ![GitHub Repo stars](https://img.shields.io/github/stars/MemMachine/MemMachine?style=social) | https://github.com/MemMachine/MemMachine<br>https://memmachine.ai/ |
-| MineContext | 2025-09-30 | ![GitHub Repo stars](https://img.shields.io/github/stars/volcengine/MineContext?style=social) | https://github.com/volcengine/MineContext<br>No official website |
-| TiMem | 2025-10-25 | ![GitHub Repo stars](https://img.shields.io/github/stars/TiMEM-AI/timem?style=social) | https://github.com/TiMEM-AI/timem<br>https://timem.cloud |
-| EverMemOS   | 2025-10-29 | ![GitHub Repo stars](https://img.shields.io/github/stars/EverMind-AI/EverMemOS?style=social) | https://github.com/EverMind-AI/EverMemOS<br>https://evermind.ai/ |
-| MemoryBear  | 2025-12-17 | ![GitHub Repo stars](https://img.shields.io/github/stars/SuanmoSuanyangTechnology/MemoryBear?style=social) | https://github.com/SuanmoSuanyangTechnology/MemoryBear<br>https://www.memorybear.ai/ |
-| OMEGA  | 2025-12-17 | ![GitHub Repo stars](https://img.shields.io/github/stars/omega-memory/omega-memory?style=social) | https://github.com/omega-memory/omega-memory<br>https://omegamax.co/ |
-| Autohand Code CLI | 2025-12-20 | ![GitHub Repo stars](https://img.shields.io/github/stars/autohandai/code-cli?style=social) | https://github.com/autohandai/code-cli<br>https://www.autohand.ai/code/ |
-| Hindsight   | 2025-12-22 | ![GitHub Repo stars](https://img.shields.io/github/stars/vectorize-io/hindsight?style=social) | https://github.com/vectorize-io/hindsight<br>https://hindsight.vectorize.io/ |
-| widemem-ai | 2026-02-23 | ![GitHub Repo stars](https://img.shields.io/github/stars/remete618/widemem-ai?style=social) | https://github.com/remete618/widemem-ai<br>https://widemem.ai |
-| Riverse | 2026-02-25 | ![GitHub Repo stars](https://img.shields.io/github/stars/wangjiake/JKRiver?style=social) | https://github.com/wangjiake/JKRiver<br>https://wangjiake.github.io/riverse-docs/ |
-| SuperLocalMemory | 2026-03-01 | ![GitHub Repo stars](https://img.shields.io/github/stars/qualixar/superlocalmemory?style=social) | https://github.com/qualixar/superlocalmemory<br>https://superlocalmemory.com/ |
-| Cog | 2026-03-15 | ![GitHub Repo stars](https://img.shields.io/github/stars/marciopuga/cog?style=social) | https://github.com/marciopuga/cog<br>No official website |
-| NeverOnce | 2026-03-18 | ![GitHub Repo stars](https://img.shields.io/github/stars/WeberG619/neveronce?style=social) | https://github.com/WeberG619/neveronce<br>https://pypi.org/project/neveronce/ |
-| MHN AI Agent Memory | 2026-03-21 | ![GitHub Repo stars](https://img.shields.io/github/stars/shahzebqazi/mhn-ai-agent-memory?style=social) | https://github.com/shahzebqazi/mhn-ai-agent-memory<br>No official website |
+
 
 ### 🎥 多媒体资源
 
@@ -360,98 +319,21 @@ To systematically organize the diverse research and practical resources in the f
   </thead>
   <tbody>
     <tr>
-      <td rowspan="6"><strong>记忆基本理论</strong></td>
+      <td rowspan="1"><strong>记忆基本理论</strong></td>
       <td>https://www.youtube.com/watch?v=k3FUWWEwgfc</td>
       <td>基于LangGraph的短期记忆</td>
     </tr>
     <tr>
-      <td>https://www.youtube.com/watch?v=WsGVXiWzTpI</td>
-      <td>OpenAI: 智能体记忆设计模式</td>
-    </tr>
-    <tr>
-      <td>https://www.youtube.com/watch?v=fsENEq4F55Q</td>
-      <td>基于LangGraph的长期记忆</td>
-    </tr>
-    <tr>
-      <td>https://www.youtube.com/watch?v=L-au0tvDJbI</td>
-      <td>llm不具备类似人类的工作记忆</td>
-    </tr>
-    <tr>
-      <td>https://www.youtube.com/watch?v=RkWor1BZOn0</td>
-      <td> LLM进行长期记忆和个性化</td>
-    </tr>
-    <tr>
-      <td>https://www.youtube.com/watch?v=CFih0_6tn2w</td>
-      <td>将记忆作为大语言模型的一等任务</td>
-    </tr>
-    <tr>
-      <td rowspan="4"><strong>记忆相关工具</strong></td>
+      <td rowspan="1"><strong>记忆相关工具</strong></td>
       <td>https://www.bilibili.com/video/BV1hom8YAEhX</td>
       <td>记忆Agent</td>
     </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1CU421o7DL</td>
-      <td>基于Langchain的记忆agent</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1arJazVEaX</td>
-      <td>开启记忆MCP</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV11HxXzuExk</td>
-      <td>大模型Agent记忆</td>
-    </tr>
-    <tr>
-      <td rowspan="10"><strong>记忆相关论文</strong></td>
+      <td rowspan="1"><strong>记忆相关论文</strong></td>
       <td>https://www.bilibili.com/video/BV1XT8ez6E46</td>
       <td>AI agent记忆综述</td>
     </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1f12wBpEXX</td>
-      <td>为自进化智能体组织生成潜在记忆</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1deyFBKEFh</td>
-      <td>大型语言模型的检索器预训练记忆</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV18FnVzpE6S</td>
-      <td>记忆管理经验跟随行为的实证研究</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1mpbrzSEH9</td>
-      <td>Agent记忆工作流</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1qEtozyEoh</td>
-      <td>大型语言模型智能体记忆机制简介</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1FGrhYhEZK</td>
-      <td>记忆层大规模扩展</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1aQ1xBkE45</td>
-      <td>LLM agent记忆</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV1Yz421f7uH</td>
-      <td>评估LLM智能体的非常长期的会话记忆</td>
-    </tr>
-    <tr>
-      <td>https://www.bilibili.com/video/BV19RWdzxEsR</td>
-      <td>轻量级插件式记忆系统</td>
-    </tr>
   </tbody>
 </table>
-
-### 🧠 Adam 框架
-
-* **描述（Description）：** 基于 OpenClaw 构建的面向本地 AI 助手的五层持久化记忆与一致性架构。该框架旨在解决人工智能系统中的“记忆失效”（AI amnesia）问题，包括跨会话记忆丢失以及单次会话内部一致性逐渐退化的问题。
-* **层级结构（Layers）：** 包括 Vault 注入机制、中期记忆检索（mid-session memory search）、神经图结构（包含 7219+ 个神经元）、基于 Gemini 每日核对（nightly reconciliation），以及带有 scratchpad dropout 检测功能的一致性监控模块。
-* **验证情况（Validated）：** 已在真实业务环境中运行并验证，共计 353 个会话、6619 轮消息交互，持续生产环境运行 8 个月，由一名非开发人员完成部署与使用。
-* **平台（Platform）：** 支持 Windows / macOS / Linux 平台，基于 OpenClaw 架构，采用本地优先（local-first）设计，并具有模型无关性（model-agnostic）。
-* **相关链接（Links）：** [GitHub](https://github.com/strangeadvancedmarketing/Adam) | [Live Demo](https://strangeadvancedmarketing.github.io/Adam/) | [Interactive Proof](https://strangeadvancedmarketing.github.io/Adam/showcase/ai-amnesia-solved.html)
 
 ## 🤝  如何贡献
 提交样式: 
