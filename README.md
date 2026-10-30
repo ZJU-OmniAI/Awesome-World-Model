@@ -1,325 +1,80 @@
-# Awesome-AI-Memory
+# Awesome World Model
 
-<p align="center">
-    【English | <a href="README_cn.md">中文</a>】
-</p>
+**English** | [简体中文](README_cn.md)
 
-<div align="center">
-    <img src="assets/Gemini_Generated_Image_awesome_world_model.png" alt="Survey Framework" width="82%">
-</div>
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/ZJU-OmniAI/Awesome-World-Model)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE.txt)
+[![Papers](https://img.shields.io/badge/Papers-67-blue.svg)](docs/paper-index.md)
 
-[![Awesome](https://awesome.re/badge.svg)](https://github.com/IAAR-Shanghai/Awesome-AI-Memory)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![](https://img.shields.io/badge/PRs-Welcome-red)
+> **A survey of world representations, future prediction, and embodied action.**
+>
+> We study what world models predict, how predictions inform actions, and what evidence shows that they help an agent make better decisions.
 
-<a id="introduction"></a>
-## 👋 Introduction
-Current Artificial Intelligence, especially in Reinforcement Learning (RL) and Autonomous Agents, still faces immense challenges when planning and decision-making in complex, dynamic, and unpredictable real-world environments. Traditional "Model-Free" approaches often rely heavily on extensive trial-and-error, resulting in extremely low data efficiency and poor generalization to unseen scenarios. Even Large Language Models (LLMs), which excel in other domains, often exhibit brittle reasoning and unrealistic planning due to a fundamental lack of understanding of physical laws (i.e., lacking "common sense").
+World models connect internal representations of the environment with predictions of future states. For robotic manipulation, their value depends on how these predictions inform planning and control. Predictive interfaces and action-generation architectures define the main methodological choices; long-term state consistency, action fidelity, and action-sufficient representations remain central research challenges.
 
-To overcome these bottlenecks, World Models have emerged as a critical research direction for advancing AI towards higher-level intelligence. The core idea is to endow an AI system with an internal mental model of the external world—one that understands physical laws, causal relationships, and environmental dynamics. Through this model, an agent can perform internal simulations ("dreaming") in its "mind." It cannot only perceive the current state accurately but also use imagination to predict the future and evaluate the consequences of different actions, thereby achieving highly efficient planning, reflection, and reasoning without incurring the cost of real-world trial-and-error.
+## Topics
 
-Awesome-World-Model is a curated list of resources focused on AI World Models and their applications across various domains, including Reinforcement Learning, Embodied AI, Autonomous Driving, and Multimodal Perception. It systematically compiles relevant research papers, open-source frameworks, benchmarks, and cutting-edge practices. This repository is dedicated to organizing and presenting the rapidly evolving landscape of World Model research, connecting multiple fields such as Deep Learning, Generative Models (especially Video Generation), Control Theory, Computer Vision, and Cognitive Science.
+| Order | Topic | Key question | Overview |
+|---|---|---|---|
+| 01 | World model primer | What is represented and predicted? | [Concepts and terminology, Chinese](docs/01-world-model-primer.md) |
+| 02 | World models for action | What information reaches the policy, and how? | [Interfaces and architectures, Chinese](docs/02-world-action-models.md) |
+| 03 | Research problems | Can predictions preserve state, follow actions, and support control? | [Methods, evidence, and open questions, Chinese](docs/03-problem-taxonomy.md) |
 
----
+[Complete paper index](docs/paper-index.md)
 
-<a id="goal-of-repository"></a>
-## 🎯 Goal of Repository
-Our mission is to establish a centralized, continuously evolving knowledge base that serves as a valuable reference for researchers and practitioners, ultimately accelerating the development of intelligent systems capable of long-term memory retention, sustained reasoning, and adaptive evolution over time.
+## 1. World model primer
 
----
+A world model represents aspects of the environment and predicts their evolution. For action-conditioned prediction, a useful conceptual decomposition is:
 
-<a id="project-scope"></a>
-## 📏 Project Scope
-This repository focuses on mechanisms, architectures, and applications that enable AI systems to build internal mental models of the external world (encompassing physical, causal, and social laws), rather than general generative models (unless specifically related to video/image generation as a world simulator). The content spans from foundational theoretical research (e.g., representation learning) to concrete engineering practices (e.g., simulators and deployment).
+$$
+z_t=E(o_{\le t},a_{<t}),\qquad
+\hat z_{t+1}\sim p_\theta(z_{t+1}\mid z_t,a_t).
+$$
 
-🌀 Included Content (In Scope)
-- World Model Architectural Design: Latent Space Models specifically designed for learning Environment Dynamics, Predictive Coding architectures, and recurrent networks (RNNs/Transformers) serving as Transition Models.
-- Representation Learning for World Models: Learning representations that are causal, physically meaningful, or Object-Centric, and the application of Self-Supervised Learning (SSL) in constructing world models.
-- Simulation and Imagination Mechanisms: Using generative video/image models (e.g., Diffusion Models, GANs) as interactive World Simulators, and agent "Dreaming" or "Simulation-in-the-head" within internal models.
-- Model-Based Planning and Control (MPC): Decision-making methods that combine World Models with Trajectory Planning, Tree Search (e.g., MCTS), or Gradient Descent optimization.
-- Model-Based Reinforcement Learning (MBRL): Using learned World Models to accelerate Policy Optimization; offline or online RL via "imagination."
-- Domain-Specific Applications: World Models for Autonomous Driving, Embodied Robotic manipulation, navigation, and scientific simulations.
-- Cognitive Science and Biological Inspiration: Neuroscience models of how the Hippocampus or Neocortex builds environmental maps, and their implications for AI World Models.
-- Evaluation and Benchmarking: Benchmarks and Datasets specifically for measuring World Model prediction accuracy, planning efficiency, data efficiency, and generalization.
-- Open-Source Frameworks and Tools: Repositories and Simulation Environments dedicated to building and testing World Models.
+The internal state may contain latent features, objects, geometry, or memory. Predictions can be decoded into observations or used directly for planning and policy learning. [World Models](https://arxiv.org/abs/1803.10122) and [Dreamer](https://arxiv.org/abs/1912.01603) provide foundational examples.
 
-🌀 Excluded Content (Out of Scope)
-- General Video or Image Generation Research: If the purpose is not serving as a world model to support agent planning or understanding (e.g., general art generation, unconditional video interpolation).
-- General Model-Free Reinforcement Learning: Unless it demonstrates a combination with World Models (e.g., as a baseline in Actor-Critic, but the focus isn't the world model itself).
-- Pure Large Language Model (LLM) Reasoning: Unless the research specifically focuses on LLMs as a logical or common-sense model of the world applied to physical entities.
-- Traditional Deterministic Physics Simulators: Unless focused on learning (Leaning from Data) physical laws, or used as a tool for building data-driven world models.
-- Generic Machine Learning or Computer Vision Methods: Lacking a direct World Model application scenario.
+Two connected perspectives are representing the current world and predicting possible futures. Applications include interactive games, robotics, driving, and social simulation, but their state spaces and evaluation criteria differ. [GameNGen](https://arxiv.org/abs/2408.14837) and [Generative Agents](https://arxiv.org/abs/2304.03442) illustrate this breadth.
 
----
+## 2. World Action Models
 
-<!-- ## 🗂️ AI-Memory Taxonomy
+A policy predicts actions from observations and instructions. An action-conditioned world model predicts the consequences of a specified action. WAMs combine predictive world modeling with action generation. A language-conditioned video plan and a simulator that responds to numerical actions provide different interfaces. [WAM survey](https://arxiv.org/abs/2605.12090)
 
-To systematically organize the diverse research and practical resources in the field of AI large model memory, this repository categorizes memory systems across multiple orthogonal dimensions, reflecting variations in storage methods, temporal scales, content forms, operational processes, and system architectures.
-1. Memory by Storage Location
-- Parametric Memory
-  - Knowledge implicitly encoded within model weights
-  - Static and not directly editable during inference
-- External / Explicit Memory
-  - Memory stored outside model parameters
-  - Readable, writable, and dynamically updatable
-2. Memory by Temporal Scope
-- Short-Term Memory
-  - Entirely dependent on context window
-  - Session-level, temporary information
-- Long-Term Memory
-  - Persistent memory across sessions and time scales
-  - Supports long-term consistency and personalization
-3. Memory by Content Type
-- Episodic Memory
-  - Event-based historical interaction memory
-  - Preserves temporal sequence and contextual relationships
-- Semantic Memory
-  - Facts, rules, and preferences abstracted from multiple experiences
-  - Typically derived from compression or induction of episodic memory
-- Procedural Memory
-  - Memory related to action patterns, skills, and task execution strategies
-4. Memory Operations
-- Writing: Determining which information should be stored
-- Retrieval: Selecting relevant memories for current tasks
-- Updating: Correcting or merging existing memories
-- Forgetting: Removing or weakening low-value information
-- Compression: Summarizing historical information to fit context windows
-5. Memory Mechanisms & Architectures
-- Retrieval-Augmented Generation (RAG)
-- Summary-based memory mechanisms
-- Vectorized semantic retrieval
-- Symbolic-neural hybrid memory systems
-- Event-driven and trigger-based memory mechanisms
-- Reinforcement learning-based memory strategy optimization
-6. Memory in Agent Systems
-- Single-agent memory
-- Multi-agent shared memory
-- Tool-augmented memory
-- Planning-aware memory
-- Personality and emotion-related memory
-7. Evaluation & Benchmarks
-- Long-term consistency evaluation
-- Continuous interaction and long-term task benchmarks
-- Memory recall and utilization efficiency metrics
-- Personalization and user preference retention evaluation
+| Architecture | Approach | Representative work |
+|---|---|---|
+| Cascaded, explicit future | Video or visual subgoals followed by learned action extraction | [UniPi](https://arxiv.org/abs/2302.00111), [VLP](https://arxiv.org/abs/2310.10625), [MVA](https://arxiv.org/abs/2607.19343) |
+| Cascaded, motion interface | Flow or geometry followed by control | [AVDC](https://arxiv.org/abs/2310.08576), [Im2Flow2Act](https://arxiv.org/abs/2407.15208), [Dream2Flow](https://arxiv.org/abs/2512.24766) |
+| Cascaded, predictive features | Latent or hidden-state conditioning of an action model | [VPP](https://arxiv.org/abs/2412.14803), [RynnWorld-4D](https://arxiv.org/abs/2607.06559) |
+| Joint, autoregressive backbone | Shared sequence modeling of world and action | [WorldVLA](https://arxiv.org/abs/2506.21539), [RynnVLA-002](https://arxiv.org/abs/2511.17502) |
+| Joint, shared-stream diffusion | Shared world and action objectives | [UWM](https://arxiv.org/abs/2504.02792), [FLARE](https://arxiv.org/abs/2505.15659), [DreamZero](https://arxiv.org/abs/2602.15922) |
+| Joint, multiple streams | Modality-specific experts and cross-stream interaction | [Motus](https://arxiv.org/abs/2512.13030), [LingBot-VA](https://arxiv.org/abs/2601.21998), [Fast-WAM](https://arxiv.org/abs/2603.16666) |
 
---- -->
+Predictive interfaces, training objectives, and inference procedures are distinct architectural dimensions. Im2Flow2Act connects a motion interface to a learned policy, while FLARE uses latent future supervision. Diffusion models can also roll out autoregressively over time, and joint training can coexist with cascaded inference.
 
-<a id="recent-hot-research-and-news"></a>
-## 🔔 Recent hot research and news
-+ 2026-4-4 – 🎉 Initial Repo
+![DreamZero: joint video-action training and closed-loop execution](assets/figures/dreamzero.png)
 
----
+*Figure from [DreamZero](https://arxiv.org/abs/2602.15922): future prediction and action generation share a model, with real observations updating the execution context.*
 
-## 🗺️ Table of Contents
-- [Introduction](#introduction)
-- [Goal of Repository](#goal-of-repository)
-- [Project Scope](#project-scope)
-- [Recent hot research and news](#recent-hot-research-and-news)
-- [Core Concepts](#core-concepts)
-- [Paper List](#paper-list)
-  - [Survey](#survey)
-  - [Framework & Methods](#framework-methods)
-  - [Datasets & Benchmark](#datasets-benchmark)
-- [Resources](#resources)
-  - [Benchmarks and Tasks](#benchmarks-and-tasks)
-  - [Multi-media Resource](#multi-media-resource)
-- [Make a Contribution](#make-a-contribution)
-- [Community and Support](#community-and-support)
+Future information can provide training supervision, predictive features, explicit visual plans, or candidate-action evaluations. [Fast-WAM](https://arxiv.org/abs/2603.16666) removes the future branch at inference, whereas [LaWAM](https://arxiv.org/abs/2606.15768) exposes predicted latent subgoals to the action model. These choices create different trade-offs between predictive information and deployment cost.
 
----
+## 3. Research problems
 
-<a id="core-concepts"></a>
-## 🧠 Core Concepts
+| Problem | Question | Representative work |
+|---|---|---|
+| Long-term state consistency | Does the same world persist after revisits, occlusion, or several task stages? | [Spatial Memory](https://arxiv.org/abs/2506.05284), [RELIC](https://arxiv.org/abs/2512.04040), [WorldDP](https://arxiv.org/abs/2606.08775) |
+| Action and physical correctness | Do specified actions affect trajectories and interactions correctly? | [Ctrl-World](https://arxiv.org/abs/2510.10125), [PhysisForcing](https://arxiv.org/abs/2606.28128), [EVA](https://arxiv.org/abs/2603.17808), [ABot-PhysWorld](https://arxiv.org/abs/2603.23376) |
+| Action-sufficient representations | Does the predictive interface retain information needed for the task? | [LaWAM](https://arxiv.org/abs/2606.15768), [AGRA](https://arxiv.org/abs/2606.12217) |
 
-- **World Model**: An internal mental model of an AI system designed to understand the laws of physics, causal relationships, and the dynamic changes of the environment. It endows an agent with "imagination," enabling it to simulate future states internally and evaluate the consequences of actions, thereby achieving efficient planning and decision-making without resorting to expensive trial-and-error in the real environment.
+[DexWorldModel](https://arxiv.org/abs/2604.16484) spans semantic prediction, memory, and efficient inference. Object-centric planning does not by itself establish long-term memory. Likewise, visual quality, causal action response, and robot executability require different evidence.
 
-- **State Representation Learning**: The process of transforming high-dimensional, redundant raw observational data (e.g., images, video) into low-dimensional, compact latent vectors that contain crucial semantic information. Ideal representations should possess the Markov property and be able to disentangle different entities and their attributes within the environment.
+## Evaluation and research discussion
 
-- **Transition Model / Dynamics Model**: A core component of the world model responsible for predicting how the environment will evolve to the next state after executing a specific action in the current state ($S_t, A_t \rightarrow S_{t+1}$). It captures the physical laws and causal logic of the environment.
+World-model evaluation spans perceptual and manipulative quality ([WorldSimBench](https://arxiv.org/abs/2410.18072)), physical prediction ([Physics-IQ](https://arxiv.org/abs/2501.09038)), embodied video quality ([EWMBench](https://arxiv.org/abs/2505.09694)), and video understanding ([MMWorld](https://arxiv.org/abs/2406.08407)). Robot success rates additionally depend on embodiment, data, task split, and execution protocol.
 
-- **Latent Space Simulation**: Performing future prediction and inference within a low-dimensional latent space rather than the raw pixel space. This greatly improves computational efficiency and allows the model to focus on high-level semantic changes while ignoring irrelevant details.
+[Experimental results](docs/03-problem-taxonomy.md#evidence) illustrate these different evaluation settings. Open questions include how to combine persistent object state with fast action dynamics, retrieve task-relevant memories, and choose predictive modalities under a fixed computational budget.
 
-- **Model-Based Planning**: The process where an agent utilizes the world model to search for an optimal sequence of actions during lookahead or "dreaming." Common algorithms include Model Predictive Control (MPC) and Monte Carlo Tree Search (MCTS).
+## Papers and resources
 
-- **Model-Based Reinforcement Learning (MBRL)**: A reinforcement learning paradigm where the agent first learns a world model and then utilizes this model to generate simulated experience to train a policy or value function, thereby significantly improving data efficiency.
-
-- **Differentiable Physics Engine**: A physics simulator capable of computing the gradients of outputs with respect to inputs. When integrated into a world model, it allows for direct optimization of control policies via gradient descent, enabling highly efficient learning.
-
-- **Object-Centric Representation**: A way of representing the environment as a set of discrete objects and their interactions. This approach aligns with human cognition, helping to improve the model's generalization to unseen scenarios and its causal reasoning capabilities.
-
-- **Multimodal World Model**: A world model capable of processing and integrating multiple perceptual modalities (e.g., vision, language, tactile, action). It leverages complementary information from different modalities to build a more comprehensive and robust understanding of the environment.
-
-- **Causal Discovery & Reasoning**: The ability to distinguish between correlation and causation within a world model. This enables the agent to understand "what would happen if I did this" (Intervention) and to perform counterfactual reasoning.
-
-- **Cognitive Map**: A specific form of a world model that focuses on the internal representation of the environment's spatial structure, topological relationships, and key landmarks, often used for navigation and long-term planning tasks.
-
-- **General / Foundation World Model**: A world model pre-trained on massive, diverse datasets (e.g., internet-scale video) possessing strong generalization capabilities. It can serve as a universal physical common-sense knowledge base for downstream embodied AI tasks like robotic manipulation and autonomous driving.
-
----
-
-<a id="paper-list"></a>
-## 📚 Paper List
-Papers below are ordered by **publication date**:
-
-<a id="survey"></a>
-<details>
-  <summary><strong>Survey</strong></summary>
-
-  <table style="width: 100%;">
-    <tr>
-      <td><strong>Date</strong></td>
-      <td><strong>Paper & Summary</strong></td>
-      <td><strong>Tags</strong></td>
-      <td><strong>Links</strong></td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="width: 15%;">2026-03-05</td>
-      <td style="width: 55%;"><strong>Learning to Model the World: A Survey of World Models in Artificial Intelligence</strong></td>
-      <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/Long%20Context-blue" alt="Long Context">
-      </td>
-      <td style="width: 15%;"><a href="https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.177274570.09578608/v1">
-      <img src="https://img.shields.io/badge/TechRxiv-Paper-orange" alt="TechRxiv Badge">
-    </a></td>
-    </tr>
-    <tr>
-      <td colspan="3">
-            • This survey provides a structured overview of world models in artificial intelligence, showing how the field has evolved from classical predictive state modeling and latent-dynamics learning toward more general paradigms enabled by large-scale generative and multimodal foundation models.<br>
-            • It organizes existing approaches into several representative categories, including observation-level generative world models, latent-space world models, reinforcement-learning-based world models, and object-centric methods for structured environment modeling.<br>
-            • The paper also reviews major application domains such as robotics, autonomous driving, scientific discovery, game simulation, and GUI agents, while summarizing benchmarks, evaluation metrics, simulation platforms, and key open challenges including long-horizon consistency, generalization, and trustworthiness.
-        </td>
-    </tr>
-  </table>
-</details>
-
-<a id="framework-methods"></a>
-<details>
-  <summary><strong>Framework & Methods</strong></summary>
-
-  <table style="width: 100%;">
-    <tr>
-      <td><strong>Date</strong></td>
-      <td><strong>Paper & Summary</strong></td>
-      <td><strong>Tags</strong></td>
-      <td><strong>Links</strong></td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="width: 15%;">2026-03-11</td>
-      <td style="width: 55%;"><strong>EVA: Aligning Video World Models with Executable Robot Actions via Inverse Dynamics Rewards</strong></td>
-      <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/RL Training-red" alt="safety">
-        <img src="https://img.shields.io/badge/Physical Consistency-yellow" alt="Evolution">
-      </td>
-      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.17808">
-        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-      </a></td>
-    </tr>
-      <tr>
-      <td colspan="3">
-            • This paper studies a central issue in robotic video world models: generated visual rollouts may appear plausible, yet still fail to correspond to physically executable and kinematically consistent robot actions, creating what the authors call the executability gap.<br>
-            • To address this problem, the paper proposes EVA, a reinforcement-learning-based post-training framework that first trains an inverse dynamics model on real robot trajectories and then repurposes it as a reward model to evaluate generated videos through the action sequences they imply.<br>
-            • By encouraging smoother velocity, acceleration, and jerk profiles while penalizing unstable or embodiment-violating actions, EVA reduces robot-specific artifacts in generated rollouts and improves downstream execution success on both the RoboTwin benchmark and a real bimanual robot platform.
-        </td>
-    </tr>
-  </table>
-</details>
-
-<a id="datasets-benchmark"></a>
-<details>
-  <summary><strong>Datasets & Benchmark</strong></summary>
-
-  <table style="width: 100%;">
-    <tr>
-      <td><strong>Date</strong></td>
-      <td><strong>Paper & Summary</strong></td>
-      <td><strong>Tags</strong></td>
-      <td><strong>Links</strong></td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="width: 15%;">2026-03-04</td>
-      <td style="width: 55%;"><strong>MMWorld: Towards Multi-discipline Multi-faceted World Model Evaluation in Videos</strong></td>
-      <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/Physics Consistency-yellow" alt="Personalized">
-      </td>
-      <td style="width: 15%;"><a href="https://arxiv.org/abs/2406.08407">
-        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-      </a></td>
-    </tr>
-      <tr>
-      <td colspan="3">
-            • MMWorld introduces a video benchmark for evaluating world-model-like capabilities in multimodal models, with a particular focus on understanding real-world dynamics, causality, and complex temporal processes.<br>
-            • Its two defining properties are multi-discipline coverage, spanning 7 broad disciplines and 69 subdisciplines, and multi-faceted reasoning, including explanation, counterfactual reasoning, and future prediction.<br>
-            • The benchmark contains 1,910 videos, 6,627 question-answer pairs, and associated captions. Experimental results show that even strong proprietary and open-source multimodal models still struggle on MMWorld, indicating substantial room for improvement in video-based world understanding and evaluation.
-        </td>
-    </tr>
-  </table>
-</details>
-
-<a id="resources"></a>
-## 🧰 Resources
-
-<a id="benchmarks-and-tasks"></a>
-### 📊 Benchmarks and Tasks
-
-| Task Type | Benchmarks & Datasets |
-| :--: | -- |
-| **Physical Consistency** | [MMWorld](https://arxiv.org/abs/2406.08407) |
-
-<a id="multi-media-resource"></a>
-### 🎥 Multi-media Resource
-
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Website Link</th>
-      <th>Introduction</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="1"><strong>Tutorial</strong></td>
-      <td>https://world-model-tutorial.github.io/</td>
-      <td>CVPR 2025 Tutorial: From Video Generation to World Model</td>
-    </tr>
-  </tbody>
-</table>
-
-<a id="make-a-contribution"></a>
-## 🤝 Make a Contribution
-Issue Template:
-```
-Title: [paper's title]
-Head: [head name1] (, [head name2] ...)
-Published: [arXiv / ACL / ICLR / NIPS / ...]
-Summary:
-  - Innovation:
-  - Tasks:
-  - Significant Result:
-```
-
-<a id="community-and-support"></a>
-## 💬 Community and Support
-
-Join our community to ask questions, share your projects, and connect with other developers.
-
-- **GitHub Issues**: Report bugs or request features in our <a href="https://github.com/pm1255/Awesome-World-Model/issues" target="_blank">GitHub Issues</a>.
-- **GitHub Pull Requests**: Contribute code improvements via <a href="https://github.com/pm1255/Awesome-World-Model/pulls" target="_blank">Pull Requests</a>.
-- **Rednote**: Scan the QR code below to join our discussion group, get the latest research information related to World Model, or promote your related research results.
-
-<!-- <div style="text-align: center;">
-  <img src="assets/rednote-qr-code.jpg" alt="QR Code" width="255">
-</div> -->
-
-<!-- <center>
-  <img src="assets/rednote-qr-code.jpg" alt="QR Code" width="255">
-</center> -->
-
-<table style="width:100%">
-  <tr>
-    <td align="center">
-      <img src="assets/rednote-qr-code.jpg" alt="QR Code" width="255">
-    </td>
-  </tr>
-</table>
+- [Paper index](docs/paper-index.md).
+- [CVPR 2025 tutorial: From Video Generation to World Model](https://world-model-tutorial.github.io/).
+- [Awesome Closed-Loop VLA](https://github.com/ZJU-OmniAI/Awesome-Closed-Loop-VLA/blob/main/README_zh.md): execution, prediction, and learning loops for robot agents.
+- [Figures and references](assets/figures/README.md).
