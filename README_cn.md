@@ -1,264 +1,223 @@
-# Awesome-World-Model
+# Awesome World Model
 
-<p align="center">
-  中文 | <a href="README_EN.md">English</a>
-</p>
+[English](README.md) | **简体中文**
 
-<div align="center">
-  <img src="assets/Gemini_Generated_Image_awesome_world_model.png" alt="Survey Framework" width="82%">
-</div>
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/ZJU-OmniAI/Awesome-World-Model)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE.txt)
+[![Papers](https://img.shields.io/badge/Papers-67-blue.svg)](docs/paper-index.md)
 
-[![Awesome](https://awesome.re/badge.svg)](https://github.com/pm1255/Awesome-World-Model)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-red)
+> **综述：世界模型的环境表征、未来预测与具身行动。**
+>
+> 面向决策的世界模型需要保存任务相关状态、预测动作后果，并让预测参与可执行的行为。
 
-<a id="intro"></a>
-## 👋 简介
-当前的人工智能，特别是在强化学习（RL）和自主智能体（Autonomous Agents）领域，在复杂、动态且不可预测的真实世界中进行规划与决策时，仍面临巨大挑战。传统的“无模型”（Model-Free）方法往往依赖大量的试错（Trial-and-Error），数据效率极低，且难以推广到未曾见过的场景。即便是在其他领域表现优异的大语言模型（LLM），也常常因为缺乏对物理世界运作规律的深刻理解（缺乏“常识”），而表现出推理能力不稳、规划脱离实际等问题。
+## 目录
 
-为解决这些瓶颈，世界模型（World Model）逐渐成为 AI 迈向更高阶智能的关键研究方向。世界模型旨在为 AI 系统构建一个关于外部世界的“内部心智模型”：它能够理解物理定律、因果关系以及环境的动态变化。通过这一模型，智能体可以在其“头脑”中进行内部模拟（Simulate）——不仅能准确感知当前状态，还能利用想象力（Imagination）预测未来、评估不同行动的后果，从而实现高效的规划、反思与推理，而无需在真实环境中承担试错的代价。
+- [摘要](#overview)
+- [1. 世界模型科普](#primer)
+- [2. 世界模型与动作生成](#wam)
+- [3. 问题分类与代表工作](#problems)
+- [4. 评测基准与实验分析](#evaluation)
+- [5. 研究讨论](#discussion)
+- [论文与学习资源](#resources)
 
-Awesome-World-Model 是一个专门围绕 AI 世界模型（World Models）及其在强化学习、具身智能、自动驾驶及多模态感知等领域应用构建的资源汇编仓库。它系统性地收集相关的研究论文、开源框架、基准测试（Benchmarks）以及前沿实践。该仓库致力于梳理世界模型这一跨学科领域的快速发展脉络，连接深度学习、生成式模型（尤其是视频生成）、控制理论、计算机视觉与认知科学等多个研究方向。
+<a id="overview"></a>
+## 摘要
 
----
+世界模型通过内部表示和动态预测，描述环境当前处于什么状态、未来可能怎样变化。从 [World Models](https://arxiv.org/abs/1803.10122)与 [Dreamer](https://arxiv.org/abs/1912.01603)的潜空间想象，到视频生成与交互模拟，再到连接未来预测和机器人控制的 [World Action Models](https://arxiv.org/abs/2605.12090)，这些路线共同关注如何让预测成为决策的依据。
 
-<a id="goals"></a>
-## 🎯 仓库目标
-我们致力于建立一个中心化、持续演进的知识库，为研究人员和从业者提供关于 AI 世界模型（World Models）的高价值参考资料。我们的最终目标是加速具身智能（Embodied AI）、自主智能体（Autonomous Agents）以及基础多模态模型的发展，使其能够深刻理解物理世界的运作规律，具备强大的想象力、长期规划能力以及高效的数据利用率，从而在复杂、未知的真实环境中实现可靠决策。
+机器人操作对世界模型提出了更具体的要求：预测需要响应动作、保持任务状态，并支持控制。**预测什么**与**预测怎样参与动作生成**是两个核心问题。模型能否保持长期状态、正确预测动作后果，并保留决策所需的信息，决定了预测在复杂任务中的作用。
 
----
+| 主题 | 核心问题 | 专题 |
+|---|---|---|
+| 01 · 世界模型科普 | 模型表示什么、预测什么、用在哪里？ | [概念、发展脉络与术语](docs/01-world-model-primer.md) |
+| 02 · World Action Models | 未来信息如何用于策略、规划和控制？ | [预测目标、模型架构与训练推理](docs/02-world-action-models.md) |
+| 03 · 问题分类 | 预测能否保持状态、符合物理规律并帮助决策？ | [代表方法、实验结果与开放问题](docs/03-problem-taxonomy.md) |
 
-<a id="scope"></a>
-## 📏 项目范围
-本仓库核心关注使 AI 系统能够构建外部世界（包括物理、因果和社会规律）内部心智模型（Mental Models）的机制、架构与应用，而非单纯关注通用的生成式模型（除非涉及将视频/图像生成作为世界模拟器）。内容涵盖从基础理论研究（如表征学习）到具体的工程实践（如模拟器和部署）。
+[论文索引](docs/paper-index.md)
 
-### 🌀 包含内容（In Scope）
-- 世界模型架构设计：专门用于学习环境动态（Environment Dynamics）的潜在空间模型（Latent Space Models）、预测性编码（Predictive Coding）架构、递归神经网络（RNNs/Transformers）作为转换器的模型。
-- 面向世界模型的表征学习：学习具有因果关系（Causality）、物理意义或对象中心（Object-Centric）的表征，以及自监督学习（Self-Supervised Learning）在构建世界模型中的应用。
-- 模拟与想象机制：使用生成式视频/图像模型（如扩散模型、GANs）作为可交互的世界模拟器（World Simulators），以及智能体在内部模型中的“梦境”（Dreaming）或模拟（Simulation-in-the-head）。
-- 基于模型的规划与控制（MPC）：将世界模型与轨迹规划、树搜索（MCTS）或梯度优化（Gradient Descent）相结合的决策方法。
-- 基于世界模型的强化学习（MBRL）：使用学习到的世界模型来加速策略优化（Policy Optimization），通过“想象”进行离线或在线 RL。
-- 特定领域的应用：用于自动驾驶、具身机器人操作、导航以及科学模拟的世界模型。
-- 认知科学与生物学灵感：关于海马体（Hippocampus）或大脑皮层（Neocortex）如何构建环境图谱的神经科学模型，及其对 AI 世界模型的启示。
-- 评估与基准测试：用于衡量世界模型的预测精度、规划效率、数据效率和概括（Generalization）能力的 Benchmarks 和 Datasets。
-- 开源框架与工具：专门用于构建和测试世界模型的代码库和模拟环境。
+<a id="primer"></a>
+## 1. 世界模型科普
 
-### 🌀 不包含内容（Out of Scope）
-- 通用的视频或图像生成研究：如果其目的并非作为世界模型来支持智能体的规划或理解（例如：一般的艺术生成、无条件的视频插帧）。
-- 通用的无模型（Model-Free）强化学习：除非其展示了与世界模型的结合（例如作为 Actor-Critic 中的基线，但重点不在世界模型本身）。
-- 单纯的大语言模型（LLM）推理：除非其研究集中于 LLM 如何作为世界的逻辑或常识模型，并应用于物理实体。
-- 传统的确定性物理模拟器：除非其专注于从数据中学习（Learn from Data）物理规律，或作为构建数据驱动世界模型的工具。
-- 通用的机器学习或计算机视觉方法：缺乏直接的世界模型应用场景。
+### 1.1 状态、动作与未来
 
----
+以机器人推杯子为例：相机给出当前画面，模型需要表示杯子的位置、桌面结构和机器人状态；给定推的方向与幅度，预测杯子接下来怎样移动。这包含两个相互依赖的过程：**从观察形成内部状态，以及根据状态和动作预测变化**。
 
-<a id="news"></a>
-## 🔔 近期热点研究与新闻
-- 2026-04-04 – 🎉 仓库初始化
+$$
+z_t = E(o_{\le t},a_{<t}),\qquad
+\hat z_{t+1} \sim p_\theta(z_{t+1}\mid z_t,a_t).
+$$
 
----
+这里 $o_t$ 是观察，$z_t$ 是内部状态，$a_t$ 是动作。需要可视化时，可以将未来状态解码成图像、视频或几何；用于控制时，也可以直接在 latent 空间规划或训练策略。部分可观测环境需要历史信息或记忆，单帧图像通常不能完整表达速度、遮挡关系和先前交互。
 
-<a id="toc"></a>
-## 🗺️ 目录表
-- [简介](#intro)
-- [仓库目标](#goals)
-- [项目范围](#scope)
-- [近期热点研究与新闻](#news)
-- [核心概念](#core-concepts)
-- [论文列表](#papers)
-  - [综述](#surveys)
-  - [方法类与框架类论文](#methods-frameworks)
-  - [数据集和评估基准类论文](#datasets-benchmarks)
-- [仓库资源](#resources)
-  - [测试基准](#benchmarks)
-  - [多媒体资源](#multimedia)
-- [如何贡献](#contributing)
-- [社区和支持](#community-support)
-
----
-
-<a id="core-concepts"></a>
-## 🧠 核心概念
-
-- **世界模型（World Model）**：一个人工智能系统的内部心智模型，旨在理解物理世界的运作规律、因果关系以及环境的动态变化。它赋予智能体“想象力”，使其能够在内部模拟未来状态、评估行动后果，从而实现高效的规划与决策，而无需在真实环境中进行昂贵的试错。
-- **状态表征学习（State Representation Learning）**：将高维、冗余的原始观测数据（如图像、视频）转化为低维、紧凑且包含关键语义信息的潜在向量（Latent Vectors）的过程。优秀的表征应具备马尔可夫性质，并能够解耦出环境中的不同实体及其属性。
-- **转换模型 / 动态模型（Transition Model / Dynamics Model）**：世界模型的核心组件，负责预测在当前状态下执行特定行动后，环境将如何演化到下一个状态（$S_t, A_t \rightarrow S_{t+1}$）。它捕捉了环境的物理规律和因果逻辑。
-- **潜在空间模拟（Latent Space Simulation）**：在低维潜在空间中进行未来的预测和推演，而非在原始像素空间。这极大地提高了计算效率，并允许模型关注高层语义变化而忽略无关细节。
-- **基于模型的规划（Model-Based Planning）**：智能体利用世界模型在前瞻（Lookahead）或“梦境”（Dreaming）中搜索最优行动序列的过程。常用算法包括模型预测控制（MPC）、蒙特卡洛树搜索（MCTS）等。
-- **基于模型的强化学习（Model-Based Reinforcement Learning, MBRL）**：一种强化学习范式，智能体首先学习一个世界模型，然后利用该模型生成模拟经验来训练策略（Policy）或价值函数（Value Function），从而显著提高数据效率。
-- **可微物理引擎（Differentiable Physics Engine）**：一种能够计算输出对输入梯度的物理模拟器。当集成到世界模型中时，它允许通过梯度下降直接优化控制策略，实现极具效率的学习。
-- **对象中心表征（Object-Centric Representation）**：将环境视为一组离散对象及其相互作用的表征方式。这种方式符合人类认知，有助于提高模型对未见过场景的泛化能力和因果推理能力。
-- **多模态世界模型（Multimodal World Model）**：能够处理和整合多种感知模态（如视觉、语言、触觉、动作）的世界模型。它利用不同模态的互补信息来构建更全面、更鲁棒的环境理解。
-- **因果发现与推理（Causal Discovery & Reasoning）**：在世界模型中区分相关性（Correlation）与因果性（Causation）的能力。这使智能体能够理解“如果我这样做，会发生什么”（Intervention），并进行反事实推理（Counterfactual Reasoning）。
-- **认知地图（Cognitive Map）**：世界模型的一种特定形式，侧重于对环境空间结构、拓扑关系以及关键地标的内部表征，常用于导航和长期规划任务。
-- **广义世界模型 / 基础世界模型（General / Foundation World Model）**：在海量、多样化数据（如互联网规模的视频）上预训练的具有强大泛化能力的世界模型。它可以作为下游具身智能任务（如机器人操控、自动驾驶）的通用物理常识库。
-
----
-
-<a id="papers"></a>
-## 📚 论文列表
-以下论文按发表日期排列：
-
-<a id="surveys"></a>
-<details>
-  <summary><strong>综述</strong></summary>
-
-  <table style="width: 100%;">
-    <tr>
-      <td><strong>时间</strong></td>
-      <td><strong>论文与摘要</strong></td>
-      <td><strong>标签</strong></td>
-      <td><strong>链接</strong></td>
-    </tr>
-     <tr>
-      <td><strong>Date</strong></td>
-      <td><strong>Paper & Summary</strong></td>
-      <td><strong>Tags</strong></td>
-      <td><strong>Links</strong></td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="width: 15%;">2026-03-05</td>
-      <td style="width: 55%;"><strong>Learning to Model the World: A Survey of World Models in Artificial Intelligence</strong></td>
-      <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/Long%20Context-blue" alt="Long Context">
-      </td>
-      <td style="width: 15%;"><a href="https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.177274570.09578608/v1">
-      <img src="https://img.shields.io/badge/TechRxiv-Paper-orange" alt="TechRxiv Badge">
-    </a></td>
-    </tr>
-    <tr>
-      <td colspan="3">
-            • 系统梳理了人工智能中 world model 的研究脉络，指出该方向正在从经典的状态预测与潜变量建模，逐步扩展到由大规模生成模型和多模态基础模型驱动的更通用建模范式。<br>
-            • 将现有方法归纳为多类代表性路线，包括观测层生成式 world model、潜空间 world model、基于强化学习的 world model，以及面向复杂场景建模的对象中心方法。<br>
-            • 进一步总结了 world model 在机器人、自主驾驶、科学发现、游戏仿真、GUI 智能体等领域的应用，并系统讨论了评测基准、评价指标、仿真平台以及长时程一致性、泛化能力与可信性等关键开放问题，为后续研究提供了较完整的参考框架。
-        </td>
-    </tr>
-  </table>
-</details>
-
-<a id="methods-frameworks"></a>
-<details>
-  <summary><strong>方法类与框架类论文</strong></summary>
-
-
-  <table style="width: 100%;">
-    <tr>
-      <td><strong>时间</strong></td>
-      <td><strong>论文与摘要</strong></td>
-      <td><strong>标签</strong></td>
-      <td><strong>链接</strong></td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="width: 15%;">2026-03-11</td>
-      <td style="width: 55%;"><strong>EVA: Aligning Video World Models with Executable Robot Actions via Inverse Dynamics Rewards</strong></td>
-      <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/RL Training-red" alt="safety">
-        <img src="https://img.shields.io/badge/Physical Consistency-yellow" alt="Evolution">
-      </td>
-      <td style="width: 15%;"><a href="https://arxiv.org/pdf/2603.17808">
-        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-      </a></td>
-    </tr>
-      <tr>
-      <td colspan="3">
-            • 该工作关注机器人视频 world model 中的一个核心问题：生成的视频轨迹可能在视觉上看似合理，但并不一定对应物理可执行、运动学一致的真实机器人动作，这种偏差被作者称为 executability gap。<br>
-            • 为解决这一问题，论文提出 EVA，一种基于强化学习的后训练对齐框架：先利用真实机器人轨迹训练逆动力学模型，再将其作为奖励模型，根据生成视频所诱导出的动作序列来评估视频质量。<br>
-            • EVA 通过鼓励更平滑的速度、加速度和 jerk 变化，并惩罚超出 embodiment 约束或不稳定的动作，减少了生成轨迹中的机器人伪影，最终提升了 RoboTwin 基准和真实双臂机器人上的下游执行成功率。
-        </td>
-    </tr>
-  </table>
-</details>
-
-<a id="datasets-benchmarks"></a>
-<details>
-  <summary><strong>数据集和评估基准类论文</strong></summary>
-
-  <table style="width: 100%;">
-    <tr>
-      <td><strong>时间</strong></td>
-      <td><strong>论文与摘要</strong></td>
-      <td><strong>标签</strong></td>
-      <td><strong>链接</strong></td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="width: 15%;">2026-03-04</td>
-      <td style="width: 55%;"><strong>MMWorld: Towards Multi-discipline Multi-faceted World Model Evaluation in Videos</strong></td>
-      <td style="width: 15%;">
-        <img src="https://img.shields.io/badge/Physics Consistency-yellow" alt="Personalized">
-      </td>
-      <td style="width: 15%;"><a href="https://arxiv.org/abs/2406.08407">
-        <img src="https://img.shields.io/badge/arXiv-Paper-%23D2691E?logo=arxiv" alt="Paper Badge">
-      </a></td>
-    </tr>
-      <tr>
-      <td colspan="3">
-            • MMWorld 提出了一个面向视频的 world-model 能力评测基准，重点考察多模态模型对真实世界动态过程、因果关系以及复杂时序信息的理解与推理能力。<br>
-            • 它的两个核心特点是：一方面具有跨学科属性，覆盖 7 个大类和 69 个子学科；另一方面具有多维推理属性，涉及解释、反事实推理、未来预测等多种世界理解能力。<br>
-            • 整个 benchmark 包含 1,910 个视频、6,627 组问答及相关字幕。实验结果表明，即使是较强的闭源和开源多模态模型，在该基准上仍然表现有限，说明视频场景下的 world-model 评测仍有很大提升空间。
-        </td>
-    </tr>
-  </table>
-</details>
-
----
-
-<a id="resources"></a>
-## 🧰 仓库资源
-
-<a id="benchmarks"></a>
-### 📊 测试基准
-
-| 任务类型 | 数据集和评估基准 |
-| --- | --- |
-| **物理一致性** | [MMWorld](https://arxiv.org/abs/2406.08407) |
-
-<a id="multimedia"></a>
-### 🎥 多媒体资源
-
-<table>
-  <thead>
-    <tr>
-      <th>类型</th>
-      <th>网址链接</th>
-      <th>内容简介</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="1"><strong>Tutorial</strong></td>
-      <td>https://world-model-tutorial.github.io/</td>
-      <td>CVPR 2025 Tutorial: From Video Generation to World Model</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-<a id="contributing"></a>
-## 🤝 如何贡献
-提交样式：
-
-```text
-Title: [paper's title]
-Head: [head name1] (, [head name2] ...)
-Published: [arXiv / ACL / ICLR / NeurIPS / ...]
-Summary:
-  - Innovation:
-  - Tasks:
-  - Significant Result:
+```mermaid
+flowchart LR
+    O[观察与历史] --> S[内部状态与记忆]
+    S --> W[世界动态预测]
+    A[候选动作] --> W
+    W --> F[未来图像 / 几何 / latent / 结果]
+    F --> P[策略学习或动作评价]
+    P --> E[真实执行]
+    E --> O
 ```
 
----
+[Dreamer](https://arxiv.org/abs/1912.01603)通过想象轨迹学习行为，[V-JEPA 2](https://arxiv.org/abs/2506.09985)则将表征预测与规划结合，体现了预测模型参与决策的不同路径。
 
-<a id="community-support"></a>
-## 💬 社区和支持
+### 1.2 两条主线与四类应用
 
-加入我们的社区，提出问题，分享您的项目，并与其他开发人员联系。
+可以从“理解世界”和“想象未来”两条主线理解世界模型。前者关注状态中保存什么，后者关注状态如何随条件改变；它们可以在同一模型中结合。
 
-- **GitHub Issues**：在我们的 [GitHub Issues](https://github.com/pm1255/Awesome-World-Model/issues) 中报告问题或提出功能需求。
-- **GitHub Pull Requests**：通过 [Pull Requests](https://github.com/pm1255/Awesome-World-Model/pulls) 提交代码改进。
-- **小红书**：扫描下方二维码加入我们的讨论组，获取最新的 World Model 相关研究信息，或推广您的相关研究成果。
+| 方向 | 研究内容 | 代表工作 |
+|---|---|---|
+| 内部表示 | 语义、对象、空间关系、历史与潜在动态 | [World Models](https://arxiv.org/abs/1803.10122)、[I-JEPA](https://arxiv.org/abs/2301.08243) |
+| 未来预测 | 给定条件后的视觉、几何、交互与结果 | [Sora 技术报告](https://openai.com/index/video-generation-models-as-world-simulators/)、[Genie 3 研究介绍](https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/) |
+| 游戏智能 | 动作条件场景演化与交互模拟 | [GameNGen](https://arxiv.org/abs/2408.14837) |
+| 具身智能 | 视觉计划、策略评估、想象数据与动作生成 | [World Action Models](https://arxiv.org/abs/2605.12090) |
+| 城市智能 | 驾驶场景预测、交通交互和决策模拟 | [WorldSimBench](https://arxiv.org/abs/2410.18072)的驾驶场景评测 |
+| 社会智能 | 带记忆、反思和计划的多智能体交互 | [Generative Agents](https://arxiv.org/abs/2304.03442) |
 
-<div align="center">
-  <img src="assets/rednote-qr-code.jpg" alt="QR Code" width="255">
-</div>
+这些应用的状态、动作和评测协议不同。社会行为模拟、视频理解与机器人接触动力学应分别评价，不能用一个总分替代。
+
+[世界模型：概念、发展脉络与应用](docs/01-world-model-primer.md)
+
+<a id="wam"></a>
+## 2. 世界模型与动作生成
+
+### 2.1 动作生成与未来预测
+
+普通策略直接建模 $p(a\mid o,\ell)$。动作条件世界模型建模 $p(o'\mid o,a)$。WAM 在学习或推理中把未来状态与动作联系起来，可概括为 $p(o',a\mid o,\ell)$；级联方法常将其实现为先预测未来、再依据未来解码动作。这里 $\ell$ 为语言指令。语言条件的目标视频与给定数值动作后的反事实模拟，提供的是不同能力。[WAM 综述](https://arxiv.org/abs/2605.12090)
+
+### 2.2 世界模型预测什么
+
+| 预测信息 | 对动作的作用 | 代表工作 |
+|---|---|---|
+| RGB 视频、关键帧、视觉子目标 | 描述目标状态或多阶段计划 | UniPi、Video Language Planning、RoboEnvision |
+| 预测性 hidden state、未来 latent | 为动作模型提供动态特征，减少像素解码 | VPP、FLARE、LaWAM |
+| 深度、对象状态、2D/3D flow、轨迹 | 表示哪里变化、怎样移动 | Im2Flow2Act、3DFlowAction、RynnWorld-4D |
+| 掩码、交互区域、触觉与接触 | 突出行动对象与物理交互 | MVA、Dream-Tac、N₀-TWAM |
+| 价值、进度与成功评价 | 比较候选动作、检测偏差 | Cosmos Policy、τ₀-WM、MV-WAM |
+
+几何适合约束位置，运动适合描述轨迹，触觉补充视觉不易观察的接触。预测目标的价值取决于其对任务成功率、泛化和控制稳定性的贡献。
+
+### 2.3 六类模型架构
+
+```mermaid
+flowchart TB
+    W[World Action Models] --> C[Cascaded：预测接口连接动作模块]
+    W --> J[Joint：联合世界与动作建模]
+    C --> CL[显式未来 + 学习式动作提取]
+    C --> CG[几何或运动接口 + 控制]
+    C --> CI[隐式预测特征 + 动作模型]
+    J --> JA[自回归主干]
+    J --> JS[单流或共享主干扩散]
+    J --> JM[多流或多专家扩散]
+```
+
+| 架构 | 代表工作 | 特点与局限 |
+|---|---|---|
+| 显式未来 + 学习式动作提取 | [UniPi](https://arxiv.org/abs/2302.00111)、[VLP](https://arxiv.org/abs/2310.10625)、[MVA](https://arxiv.org/abs/2607.19343) | 预测结果可视化，动作解码依赖视觉计划的可执行性 |
+| 几何或运动接口 | [AVDC](https://arxiv.org/abs/2310.08576)、[Im2Flow2Act](https://arxiv.org/abs/2407.15208)、[Dream2Flow](https://arxiv.org/abs/2512.24766) | 运动可跨本体表达，仍受深度、对应、抓取与控制误差影响 |
+| 隐式预测特征 | [ARDuP](https://arxiv.org/abs/2406.13301)、[VPP](https://arxiv.org/abs/2412.14803)、[RynnWorld-4D](https://arxiv.org/abs/2607.06559) | 减少 RGB 解码开销，效果取决于特征保留了多少动作相关信息 |
+| Joint 自回归 | [WorldVLA](https://arxiv.org/abs/2506.21539)、[RynnVLA-002](https://arxiv.org/abs/2511.17502) | 统一序列建模；动作编码与生成延迟需单独设计 |
+| Joint 单流 / 共享主干扩散 | [UWM](https://arxiv.org/abs/2504.02792)、[FLARE](https://arxiv.org/abs/2505.15659)、[DreamZero](https://arxiv.org/abs/2602.15922) | 共享训练信号；各方法的目标及推理流程不同 |
+| Joint 多流 / 多专家扩散 | [Motus](https://arxiv.org/abs/2512.13030)、[LingBot-VA](https://arxiv.org/abs/2601.21998)、[Fast-WAM](https://arxiv.org/abs/2603.16666) | 各模态可独立建模，信息交换方式影响生成一致性与推理成本 |
+
+预测结果的形式、训练目标和推理过程描述了模型的不同方面。Im2Flow2Act 将运动轨迹输入学习式控制策略；FLARE 在 latent 空间使用未来监督；扩散模型也可以按时间顺序逐块预测。联合训练与级联推理可以出现在同一模型中。
+
+显式视觉计划把任务目标转成可查看的未来状态，随后由 IDM 或控制策略执行；几何与运动接口进一步把“物体怎样移动”从外观中分离出来；隐式特征路线则让动作模块直接读取预测性表征。三者的共同问题是：**中间预测所表达的变化，能否可靠地转成机器人动作？**
+
+联合建模将未来与动作放进共享训练过程。[DreamZero](https://arxiv.org/abs/2602.15922)以联合视频动作 flow matching 学习两者，并在执行时用新获取的真实观察更新生成上下文。它展示了世界预测、动作输出和环境反馈如何在同一系统中连接。
+
+![DreamZero 的联合训练与真实观测闭环](assets/figures/dreamzero.png)
+
+*论文图：[DreamZero](https://arxiv.org/abs/2602.15922)。左侧为联合训练，右侧为真实观测反馈下的执行。*
+
+### 2.4 训练时预测未来，推理时如何使用
+
+未来信息可以作为训练监督、部署时的预测特征、显式视频计划或候选动作搜索的依据。[Fast-WAM](https://arxiv.org/abs/2603.16666)在推理期移除未来分支，[LaWAM](https://arxiv.org/abs/2606.15768)预测紧凑子目标，[DreamZero](https://arxiv.org/abs/2602.15922)联合生成未来与动作，形成不同的精度与计算成本取舍。
+
+共享未来监督可能改善动作表征；部署时增加未来生成或候选搜索则会消耗延迟预算。任务成功率、预测开销和真实观察反馈频率共同决定系统的部署表现。
+
+[World Action Models：预测目标、架构与推理](docs/02-world-action-models.md)
+
+<a id="problems"></a>
+## 3. 问题分类与代表工作
+
+架构回答“怎样连接模块”，问题分类回答“这些连接还会在哪里失败”。面向决策，可以从三个相互关联的维度检查世界模型。
+
+| 问题 | 典型问题 | 主要方法 | 代表工作 |
+|---|---|---|---|
+| 长期状态一致性 | 回访、遮挡或多阶段操作后，身份和状态能否保持？ | 空间记忆、压缩历史、对象状态 | [Spatial Memory](https://arxiv.org/abs/2506.05284)、[RELIC](https://arxiv.org/abs/2512.04040)、[WorldDP](https://arxiv.org/abs/2606.08775) |
+| 动作与物理正确性 | 改变动作后，未来是否相应改变？轨迹、关系和控制约束是否合理？ | 逐帧动作注入、结构监督、后训练对齐 | [Ctrl-World](https://arxiv.org/abs/2510.10125)、[PhysisForcing](https://arxiv.org/abs/2606.28128)、[EVA](https://arxiv.org/abs/2603.17808)、[ABot-PhysWorld](https://arxiv.org/abs/2603.23376) |
+| 面向动作决策的表征 | 保留的信息是否足以支持当前任务的动作选择？ | 紧凑子目标、动作相关表征对齐 | [LaWAM](https://arxiv.org/abs/2606.15768)、[AGRA](https://arxiv.org/abs/2606.12217) |
+
+[DexWorldModel](https://arxiv.org/abs/2604.16484)将语义 latent、长期记忆与异步推理结合。[WorldDP](https://arxiv.org/abs/2606.08775)通过对象状态支持多阶段规划；长期身份保持和遮挡恢复仍是对象表示面临的独立挑战。
+
+### 3.1 长期状态一致性：让过去的交互继续影响未来
+
+有限视频上下文容易丢失离开视野的对象和已完成的任务状态。[Spatial Memory](https://arxiv.org/abs/2506.05284)保存可检索的空间与历史信息，为回访区域提供参照；[RELIC](https://arxiv.org/abs/2512.04040)通过历史压缩支持流式生成。对机器人而言，还需检验记忆能否更新动态对象，保留关键接触与任务进展。
+
+![空间与历史记忆为视频世界模型提供长期参照](assets/figures/spatial-memory.png)
+
+*论文图：[Video World Models with Long-term Spatial Memory](https://arxiv.org/abs/2506.05284)。空间结构、历史参考帧与近期上下文共同参与预测。*
+
+### 3.2 动作与物理正确性：让未来响应给定动作
+
+[Ctrl-World](https://arxiv.org/abs/2510.10125)强调动作与生成帧的细粒度对应；[PhysisForcing](https://arxiv.org/abs/2606.28128)用轨迹和实体关系监督约束预测；[EVA](https://arxiv.org/abs/2603.17808)与 [ABot-PhysWorld](https://arxiv.org/abs/2603.23376)则通过后训练强化动作可执行性或物理偏好。这些路线针对不同误差，适合按证据层次比较。
+
+| 层次 | 评测内容 | 相关方法 |
+|---|---|---|
+| 几何连续 | 物体轨迹、结构与遮挡关系一致 | 点轨迹、深度和空间记忆 |
+| 交互关系 | 接触对象、作用顺序和结果随动作改变 | 动作条件预测、关系监督、干预测试 |
+| 动作可执行性 | 解码动作符合机器人运动与控制限制 | IDM 奖励、约束控制、真实执行 |
+
+视频质量分数、视觉偏好或动作平滑度各自只覆盖部分证据。评测还需要改变动作、打乱时间对应或引入失败轨迹，检查预测是否忠实反映相应后果。
+
+### 3.3 面向动作决策的表征
+
+面向动作决策的表征需要保留足以支持动作选择的信息（Action-Sufficient）。完整未来视频包含大量外观细节，控制可能只需要其中的目标位置、运动方向或接触关系。[LaWAM](https://arxiv.org/abs/2606.15768)预测紧凑 latent 子目标；[AGRA](https://arxiv.org/abs/2606.12217)对齐世界模型与动作解码器之间的特征，使动作模型更关注与任务有关的区域。
+
+![AGRA 用表征对齐连接世界预测与动作解码](assets/figures/agra.png)
+
+*论文图：[Making Foresight Actionable](https://arxiv.org/abs/2606.12217)。视觉教师的空间语义信息用于对齐世界模型中间特征。*
+
+这一方向需要同时回答信息与成本两个问题：紧凑表征是否保留精细操作所需的几何和动态，以及减少未来重建后能否保留控制收益。
+
+[世界模型的关键问题与代表方法](docs/03-problem-taxonomy.md)
+
+<a id="evaluation"></a>
+## 4. 评测基准与实验分析
+
+| 评测方向 | 基准 | 评测内容 |
+|---|---|---|
+| 视觉质量与控制效果 | [WorldSimBench](https://arxiv.org/abs/2410.18072) | 生成视频的视觉质量，以及用于机器人控制时的表现 |
+| 物理预测 | [Physics-IQ](https://arxiv.org/abs/2501.09038) | 检查特定物理场景的未来演化 |
+| 具身视频 | [EWMBench](https://arxiv.org/abs/2505.09694) | 分开评价场景、运动与语义 |
+| 视频理解与推理 | [MMWorld](https://arxiv.org/abs/2406.08407) | 跨学科视频问答与推理 |
+| 下游操作 | LIBERO、RoboTwin、RoboCasa 与真机任务 | 评价任务成功率、跨场景泛化与执行稳定性 |
+
+视频生成吞吐、动作块预测延迟与机器人控制频率对应不同的计算环节。生成长度、采样步数、硬件和反馈调度会影响速度；本体、训练数据与任务划分则影响成功率与泛化。代表方法的实验结果见[性能与实验设置](docs/03-problem-taxonomy.md#evidence)。
+
+<a id="discussion"></a>
+## 5. 研究讨论
+
+- **分层状态**：对象身份与空间结构的长期记忆，如何与短时动作动态协同？
+- **任务条件记忆**：哪些事件值得写入，如何结合位置、对象、目标和候选动作检索，以及何时修正旧状态？
+- **预测信息与任务的关系**：RGB、几何、运动和交互信息在不同操作任务中是否互补？
+- **训练收益与推理成本**：在相同预算下，训练期未来监督、推理期 latent 预测和完整未来 rollout 各有什么优势？
+
+[开放问题](docs/03-problem-taxonomy.md#discussion)
+
+<a id="resources"></a>
+## 论文与学习资源
+
+- [论文索引](docs/paper-index.md)
+- [CVPR 2025 Tutorial: From Video Generation to World Model](https://world-model-tutorial.github.io/)：从视频生成进入世界模型研究。
+- [Awesome Closed-Loop VLA](https://github.com/ZJU-OmniAI/Awesome-Closed-Loop-VLA/blob/main/README_zh.md)：机器人执行、预测与学习闭环。
+- [论文图示与出处](assets/figures/README.md)
+
+<details>
+<summary>社区交流</summary>
+
+<img src="assets/rednote-qr-code.jpg" alt="小红书社区二维码" width="220">
+
+</details>

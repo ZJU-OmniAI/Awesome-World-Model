@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.pyc
+.validation/
+
+# Source presentations and private research files stay outside this repository.
+*.[pP][pP][tT]
+*.[pP][pP][tT][xX]
+*.[pP][pP][tT][mM]
+*.[kK][eE][yY]
+*.[oO][dD][pP]
+/materials/
+/source-materials/
+/raw-materials/

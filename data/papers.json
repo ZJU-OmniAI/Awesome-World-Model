@@ -1,0 +1,605 @@
+[
+  {
+    "id": "2302.00111",
+    "name": "UniPi",
+    "title": "Learning Universal Policies via Text-Guided Video Generation",
+    "first_submitted": "2023-01-31",
+    "paper": "https://arxiv.org/abs/2302.00111",
+    "collection": "wam-visual-planning",
+    "summary_zh": "文本条件视频规划，再由逆动力学模型提取动作。"
+  },
+  {
+    "id": "2310.10625",
+    "name": "Video Language Planning",
+    "title": "Video Language Planning",
+    "first_submitted": "2023-10-16",
+    "paper": "https://arxiv.org/abs/2310.10625",
+    "collection": "wam-visual-planning",
+    "summary_zh": "以语言和视频展开树搜索，用价值判断选择视觉计划并交给控制策略。"
+  },
+  {
+    "id": "2506.22007",
+    "name": "RoboEnvision",
+    "title": "RoboEnvision: A Long-Horizon Video Generation Model for Multi-Task Robot Manipulation",
+    "first_submitted": "2025-06-27",
+    "paper": "https://arxiv.org/abs/2506.22007",
+    "collection": "wam-visual-planning",
+    "summary_zh": "以任务分解和关键帧生成连接长程视觉计划与执行。"
+  },
+  {
+    "id": "2602.10717",
+    "name": "Say, Dream, and Act",
+    "title": "Say, Dream, and Act: Learning Video World Models for Instruction-Driven Robot Manipulation",
+    "first_submitted": "2026-02-11",
+    "paper": "https://arxiv.org/abs/2602.10717",
+    "collection": "wam-visual-planning",
+    "summary_zh": "预测未来视频为动作模型提供上下文，并结合真实观测滚动控制。"
+  },
+  {
+    "id": "2607.19343",
+    "name": "MVA",
+    "title": "Masked Visual Actions for Unified World Modeling",
+    "first_submitted": "2026-07-21",
+    "paper": "https://arxiv.org/abs/2607.19343",
+    "collection": "wam-visual-planning",
+    "summary_zh": "用部分可见的机器人或物体运动掩码统一前向预测与逆向推断。"
+  },
+  {
+    "id": "2310.08576",
+    "name": "AVDC",
+    "title": "Learning to Act from Actionless Videos through Dense Correspondences",
+    "first_submitted": "2023-10-12",
+    "paper": "https://arxiv.org/abs/2310.08576",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "通过未来视频的稠密对应和深度估计几何控制量。"
+  },
+  {
+    "id": "2407.15208",
+    "name": "Im2Flow2Act",
+    "title": "Flow as the Cross-Domain Manipulation Interface",
+    "first_submitted": "2024-07-21",
+    "paper": "https://arxiv.org/abs/2407.15208",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "以对象 flow 连接人类视频和机器人策略；最终动作由学习式策略输出。"
+  },
+  {
+    "id": "2506.06199",
+    "name": "3DFlowAction",
+    "title": "3DFlowAction: Learning Cross-Embodiment Manipulation from 3D Flow World Model",
+    "first_submitted": "2025-06-06",
+    "paper": "https://arxiv.org/abs/2506.06199",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "预测物体三维运动，并结合抓取与轨迹优化转成机器人动作。"
+  },
+  {
+    "id": "2512.24766",
+    "name": "Dream2Flow",
+    "title": "Dream2Flow: Bridging Video Generation and Open-World Manipulation with 3D Object Flow",
+    "first_submitted": "2025-12-31",
+    "paper": "https://arxiv.org/abs/2512.24766",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "将生成视频恢复为三维对象流，以对象轨迹跟踪连接控制。"
+  },
+  {
+    "id": "2406.13301",
+    "name": "ARDuP",
+    "title": "ARDuP: Active Region Video Diffusion for Universal Policies",
+    "first_submitted": "2024-06-19",
+    "paper": "https://arxiv.org/abs/2406.13301",
+    "collection": "wam-representation",
+    "summary_zh": "用活动区域约束视频 latent 预测，再在 latent 空间解码动作。"
+  },
+  {
+    "id": "2412.14803",
+    "name": "VPP",
+    "title": "Video Prediction Policy: A Generalist Robot Policy with Predictive Visual Representations",
+    "first_submitted": "2024-12-19",
+    "paper": "https://arxiv.org/abs/2412.14803",
+    "collection": "wam-representation",
+    "summary_zh": "提取视频模型的预测性中间特征，作为独立动作模型的条件。"
+  },
+  {
+    "id": "2512.15692",
+    "name": "mimic-video",
+    "title": "mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs",
+    "first_submitted": "2025-12-17",
+    "paper": "https://arxiv.org/abs/2512.15692",
+    "collection": "wam-representation",
+    "summary_zh": "使用视频动态表征支持连续机器人控制。"
+  },
+  {
+    "id": "2607.06559",
+    "name": "RynnWorld-4D",
+    "title": "RynnWorld-4D: 4D Embodied World Models for Robotic Manipulation",
+    "first_submitted": "2026-07-07",
+    "paper": "https://arxiv.org/abs/2607.06559",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "联合建模 RGB、深度和光流，再将内部四维动态表征用于策略。"
+  },
+  {
+    "id": "2506.21539",
+    "name": "WorldVLA",
+    "title": "WorldVLA: Towards Autoregressive Action World Model",
+    "first_submitted": "2025-06-26",
+    "paper": "https://arxiv.org/abs/2506.21539",
+    "collection": "wam-joint",
+    "summary_zh": "在统一自回归模型中结合动作生成与未来图像预测。"
+  },
+  {
+    "id": "2511.17502",
+    "name": "RynnVLA-002",
+    "title": "RynnVLA-002: A Unified Vision-Language-Action and World Model",
+    "first_submitted": "2025-11-21",
+    "paper": "https://arxiv.org/abs/2511.17502",
+    "collection": "wam-joint",
+    "summary_zh": "共享视觉语言与世界建模能力，同时支持动作生成。"
+  },
+  {
+    "id": "2504.02792",
+    "name": "UWM",
+    "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+    "first_submitted": "2025-04-03",
+    "paper": "https://arxiv.org/abs/2504.02792",
+    "collection": "wam-joint",
+    "summary_zh": "以不同视频和动作噪声时间步统一策略、视频预测及正逆动力学。"
+  },
+  {
+    "id": "2505.15659",
+    "name": "FLARE",
+    "title": "FLARE: Robot Learning with Implicit World Modeling",
+    "first_submitted": "2025-05-21",
+    "paper": "https://arxiv.org/abs/2505.15659",
+    "collection": "wam-representation",
+    "summary_zh": "用未来 latent 表征对齐增强动作策略，无需以 RGB 视频作为控制接口。"
+  },
+  {
+    "id": "2601.16163",
+    "name": "Cosmos Policy",
+    "title": "Cosmos Policy: Fine-Tuning Video Models for Visuomotor Control and Planning",
+    "first_submitted": "2026-01-22",
+    "paper": "https://arxiv.org/abs/2601.16163",
+    "collection": "wam-feedback",
+    "summary_zh": "将动作、状态及价值编码为视频 latent 帧，用统一视频模型训练控制与规划。"
+  },
+  {
+    "id": "2602.15922",
+    "name": "DreamZero",
+    "title": "World Action Models are Zero-shot Policies",
+    "first_submitted": "2026-02-17",
+    "paper": "https://arxiv.org/abs/2602.15922",
+    "collection": "wam-joint",
+    "summary_zh": "联合视频和动作建模，按动作块生成并用真实观测更新闭环状态。"
+  },
+  {
+    "id": "2512.13030",
+    "name": "Motus",
+    "title": "Motus: A Unified Latent Action World Model",
+    "first_submitted": "2025-12-15",
+    "paper": "https://arxiv.org/abs/2512.13030",
+    "collection": "wam-joint",
+    "summary_zh": "以理解、视频和动作专家及联合调度支持多种世界动作建模模式。"
+  },
+  {
+    "id": "2604.27792",
+    "name": "MotuBrain",
+    "title": "Motubrain: An Advanced World Action Model for Robot Control",
+    "first_submitted": "2026-04-30",
+    "paper": "https://arxiv.org/abs/2604.27792",
+    "collection": "wam-joint",
+    "summary_zh": "三流 MoT 联合视频与动作，扩展语言、多视角和实时控制接口。"
+  },
+  {
+    "id": "2601.21998",
+    "name": "LingBot-VA",
+    "title": "Causal World Modeling for Robot Control",
+    "first_submitted": "2026-01-29",
+    "paper": "https://arxiv.org/abs/2601.21998",
+    "collection": "wam-joint",
+    "summary_zh": "以自回归扩散耦合视频与动作专家，并持续引入真实观测反馈。"
+  },
+  {
+    "id": "2603.16666",
+    "name": "Fast-WAM",
+    "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+    "first_submitted": "2026-03-17",
+    "paper": "https://arxiv.org/abs/2603.16666",
+    "collection": "wam-efficiency",
+    "summary_zh": "训练期联合未来与动作预测，推理期使用当前帧世界特征生成动作。"
+  },
+  {
+    "id": "2604.04502",
+    "name": "Veo-Act",
+    "title": "Veo-Act: Enhancing VLA Policies with Frontier Video Models",
+    "first_submitted": "2026-04-06",
+    "paper": "https://arxiv.org/abs/2604.04502",
+    "collection": "wam-visual-planning",
+    "summary_zh": "用视频模型提供视觉计划，配合 VLA 执行机器人控制。"
+  },
+  {
+    "id": "2605.17522",
+    "name": "RoboFlow4D",
+    "title": "RoboFlow4D: A Lightweight Flow World Model Toward Real-Time Flow-Guided Robotic Manipulation",
+    "first_submitted": "2026-05-17",
+    "paper": "https://arxiv.org/abs/2605.17522",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "直接预测多帧三维 flow，为动作生成提供运动规划。"
+  },
+  {
+    "id": "2606.17046",
+    "name": "Geometric Action Model",
+    "title": "Geometric Action Model for Robot Policy Learning",
+    "first_submitted": "2026-06-15",
+    "paper": "https://arxiv.org/abs/2606.17046",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "将几何基础模型接入未来 latent 预测与动作解码。"
+  },
+  {
+    "id": "2605.00078",
+    "name": "Being-H0.7",
+    "title": "Being-H0.7: A Latent World-Action Model from Egocentric Videos",
+    "first_submitted": "2026-04-30",
+    "paper": "https://arxiv.org/abs/2605.00078",
+    "collection": "wam-representation",
+    "summary_zh": "对齐当前条件先验与训练期未来后验，推理只用当前上下文。"
+  },
+  {
+    "id": "2606.03188",
+    "name": "GeoSem-WAM",
+    "title": "GeoSem-WAM: Geometry- and Semantic-Aware World Action Models",
+    "first_submitted": "2026-06-02",
+    "paper": "https://arxiv.org/abs/2606.03188",
+    "collection": "wam-representation",
+    "summary_zh": "增加未来几何和语义监督，部署时省去显式未来 rollout。"
+  },
+  {
+    "id": "2606.12217",
+    "name": "AGRA",
+    "title": "Making Foresight Actionable: Repurposing Representation Alignment in World Action Models",
+    "first_submitted": "2026-06-10",
+    "paper": "https://arxiv.org/abs/2606.12217",
+    "collection": "wam-representation",
+    "summary_zh": "对齐世界模型与动作解码器的表征，使动作模型更关注任务相关区域。"
+  },
+  {
+    "id": "2606.15768",
+    "name": "LaWAM",
+    "title": "LaWAM: Latent World Action Models for Efficient Dynamics-Aware Robot Policies",
+    "first_submitted": "2026-06-14",
+    "paper": "https://arxiv.org/abs/2606.15768",
+    "collection": "wam-representation",
+    "summary_zh": "预测紧凑的潜空间视觉子目标，再据此生成动作。"
+  },
+  {
+    "id": "2606.19531",
+    "name": "ImageWAM",
+    "title": "ImageWAM: Do World Action Models Really Need Video Generation, or Just Image Editing?",
+    "first_submitted": "2026-06-17",
+    "paper": "https://arxiv.org/abs/2606.19531",
+    "collection": "wam-representation",
+    "summary_zh": "用图像编辑去噪的 KV 特征连接目标变化与动作专家。"
+  },
+  {
+    "id": "2607.02195",
+    "name": "Bridge-WA",
+    "title": "Bridge-WA: Learning Action-Relevant World Dynamics for Robotic Manipulation",
+    "first_submitted": "2026-07-02",
+    "paper": "https://arxiv.org/abs/2607.02195",
+    "collection": "wam-representation",
+    "summary_zh": "向动作模型注入未来状态、空间变化和局部运动等互补信息。"
+  },
+  {
+    "id": "2605.06481",
+    "name": "OA-WAM",
+    "title": "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation",
+    "first_submitted": "2026-05-07",
+    "paper": "https://arxiv.org/abs/2605.06481",
+    "collection": "wam-representation",
+    "summary_zh": "区分对象地址与动态内容，使动作解码能定位特定对象。"
+  },
+  {
+    "id": "2606.01027",
+    "name": "τ₀-WM",
+    "title": "$\\tau_0$-WM: A Unified Video-Action World Model for Robotic Manipulation",
+    "first_submitted": "2026-05-31",
+    "paper": "https://arxiv.org/abs/2606.01027",
+    "collection": "wam-feedback",
+    "summary_zh": "统一视频动作生成、候选动作模拟与任务进度评价。"
+  },
+  {
+    "id": "2606.05979",
+    "name": "WLA-0",
+    "title": "World-Language-Action Model for Unified World Modeling, Language Reasoning, and Action Synthesis",
+    "first_submitted": "2026-06-04",
+    "paper": "https://arxiv.org/abs/2606.05979",
+    "collection": "wam-joint",
+    "summary_zh": "在自回归主干中耦合语言子任务、未来状态和动作生成。"
+  },
+  {
+    "id": "2606.08737",
+    "name": "Dream-Tac",
+    "title": "Dream-Tac: A Unified Tactile World Action Model for Contact-Rich Robot Manipulation",
+    "first_submitted": "2026-06-07",
+    "paper": "https://arxiv.org/abs/2606.08737",
+    "collection": "wam-tactile",
+    "summary_zh": "通过接触感知融合联合建模视觉、触觉和动作。"
+  },
+  {
+    "id": "2606.13674",
+    "name": "RepWAM",
+    "title": "RepWAM: World Action Modeling with Representation Visual-Action Tokenizers",
+    "first_submitted": "2026-06-11",
+    "paper": "https://arxiv.org/abs/2606.13674",
+    "collection": "wam-representation",
+    "summary_zh": "学习语义视觉动作 tokenizer，联合预测未来状态和 latent 动作。"
+  },
+  {
+    "id": "2606.14048",
+    "name": "WAM4D",
+    "title": "WAM4D: Fast 4D World Action Model via Spatial Register Tokens",
+    "first_submitted": "2026-06-12",
+    "paper": "https://arxiv.org/abs/2606.14048",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "训练期用空间寄存 token 读取未来深度，推理期移除几何分支。"
+  },
+  {
+    "id": "2606.21088",
+    "name": "MV-WAM",
+    "title": "MV-WAM: Manifold-Aware World Action Model with Value Augmentation",
+    "first_submitted": "2026-06-19",
+    "paper": "https://arxiv.org/abs/2606.21088",
+    "collection": "wam-feedback",
+    "summary_zh": "联合视觉、动作与价值估计，利用进度价值进行偏差检测和恢复。"
+  },
+  {
+    "id": "2607.08639",
+    "name": "LingBot-VA 2.0",
+    "title": "Native Video-Action Pretraining for Generalizable Robot Control",
+    "first_submitted": "2026-07-09",
+    "paper": "https://arxiv.org/abs/2607.08639",
+    "collection": "wam-joint",
+    "summary_zh": "采用因果结构进行视频动作联合预训练，结合语义 tokenizer、稀疏专家和异步控制。"
+  },
+  {
+    "id": "2607.13017",
+    "name": "FlowWAM",
+    "title": "FlowWAM: Optical Flow as a Unified Action Representation for World Action Models",
+    "first_submitted": "2026-07-14",
+    "paper": "https://arxiv.org/abs/2607.13017",
+    "collection": "wam-geometry-motion",
+    "summary_zh": "将光流作为视频兼容的动作表征，连接策略与动作条件模拟。"
+  },
+  {
+    "id": "2607.23783",
+    "name": "N₀-TWAM",
+    "title": "$N_0$-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation",
+    "first_submitted": "2026-07-26",
+    "paper": "https://arxiv.org/abs/2607.23783",
+    "collection": "wam-tactile",
+    "summary_zh": "结合触觉信息，联合预测视觉、接触状态和动作。"
+  },
+  {
+    "id": "2608.00725",
+    "name": "SelfWAM",
+    "title": "SelfWAM: A Self-Grounded Unified World Action Model for Fast Robot Control",
+    "first_submitted": "2026-08-01",
+    "paper": "https://arxiv.org/abs/2608.00725",
+    "collection": "wam-joint",
+    "summary_zh": "联合预测动作、动作条件未来帧与机器人自身掩码。"
+  },
+  {
+    "id": "2608.01397",
+    "name": "SG-WAM",
+    "title": "SG-WAM: Self-Guided World Modeling in Geometry-Aware Policy Space",
+    "first_submitted": "2026-08-02",
+    "paper": "https://arxiv.org/abs/2608.01397",
+    "collection": "wam-representation",
+    "summary_zh": "在几何感知的策略表征空间预测动作条件动态。"
+  },
+  {
+    "id": "2608.02365",
+    "name": "Faster-WAM",
+    "title": "Faster-WAM: Do World Action Models Need Deep Action Modules?",
+    "first_submitted": "2026-08-03",
+    "paper": "https://arxiv.org/abs/2608.02365",
+    "collection": "wam-efficiency",
+    "summary_zh": "保留世界模型能力，用轻量动作模块降低控制推理开销。"
+  },
+  {
+    "id": "2608.03701",
+    "name": "LiLa-WAM",
+    "title": "LiLa-WAM: Lightweight Latent Reasoning World-Action Model for Robotic Manipulation",
+    "first_submitted": "2026-08-04",
+    "paper": "https://arxiv.org/abs/2608.03701",
+    "collection": "wam-efficiency",
+    "summary_zh": "在紧凑 latent 空间进行未来推理，减少世界动作模型训练与推理成本。"
+  },
+  {
+    "id": "2506.05284",
+    "name": "Spatial Memory",
+    "title": "Video World Models with Long-term Spatial Memory",
+    "first_submitted": "2025-06-05",
+    "paper": "https://arxiv.org/abs/2506.05284",
+    "collection": "problem-memory",
+    "summary_zh": "以可检索的三维空间记忆与历史帧缓解回访遗忘。"
+  },
+  {
+    "id": "2512.04040",
+    "name": "RELIC",
+    "title": "RELIC: Interactive Video World Model with Long-Horizon Memory",
+    "first_submitted": "2025-12-03",
+    "paper": "https://arxiv.org/abs/2512.04040",
+    "collection": "problem-memory",
+    "summary_zh": "把历史 latent 与相机信息压缩到 KV，并蒸馏为流式生成模型。"
+  },
+  {
+    "id": "2606.08775",
+    "name": "WorldDP",
+    "title": "Unifying Object-Centric World Models and Diffusion Policy: A Hierarchical Framework for Multi-Stage Robotic Tasks",
+    "first_submitted": "2026-06-07",
+    "paper": "https://arxiv.org/abs/2606.08775",
+    "collection": "problem-memory",
+    "summary_zh": "对象中心世界模型规划子目标，低层扩散策略负责执行。"
+  },
+  {
+    "id": "2510.10125",
+    "name": "Ctrl-World",
+    "title": "Ctrl-World: A Controllable Generative World Model for Robot Manipulation",
+    "first_submitted": "2025-10-11",
+    "paper": "https://arxiv.org/abs/2510.10125",
+    "collection": "problem-physics",
+    "summary_zh": "逐帧动作条件、多视角预测及位姿条件记忆支持策略模拟与评价。"
+  },
+  {
+    "id": "2606.28128",
+    "name": "PhysisForcing",
+    "title": "PhysisForcing: Physics Reinforced World Simulator for Robotic Manipulation",
+    "first_submitted": "2026-06-26",
+    "paper": "https://arxiv.org/abs/2606.28128",
+    "collection": "problem-physics",
+    "summary_zh": "以点轨迹和实体关系监督增强视频世界模型的物理一致性。"
+  },
+  {
+    "id": "2604.16484",
+    "name": "DexWorldModel",
+    "title": "DexWorldModel: Causal Latent World Modeling towards Automated Learning of Embodied Tasks",
+    "first_submitted": "2026-04-13",
+    "paper": "https://arxiv.org/abs/2604.16484",
+    "collection": "problem-memory",
+    "summary_zh": "语义 latent、双状态 TTT 记忆和异步推理共同支撑机器人控制。"
+  },
+  {
+    "id": "2603.17808",
+    "name": "EVA",
+    "title": "EVA: Aligning Video World Models with Executable Robot Actions via Inverse Dynamics Rewards",
+    "first_submitted": "2026-03-18",
+    "paper": "https://arxiv.org/abs/2603.17808",
+    "collection": "problem-physics",
+    "summary_zh": "以逆动力学解码动作构造可执行性奖励，后训练视频世界模型。"
+  },
+  {
+    "id": "2603.23376",
+    "name": "ABot-PhysWorld",
+    "title": "ABot-PhysWorld: Interactive World Foundation Model for Robotic Manipulation with Physics Alignment",
+    "first_submitted": "2026-03-24",
+    "paper": "https://arxiv.org/abs/2603.23376",
+    "collection": "problem-physics",
+    "summary_zh": "物理标注数据与解耦偏好对齐改善物理合理性和动作跟随。"
+  },
+  {
+    "id": "1803.10122",
+    "name": "World Models",
+    "title": "World Models",
+    "first_submitted": "2018-03-27",
+    "paper": "https://arxiv.org/abs/1803.10122",
+    "collection": "foundations",
+    "summary_zh": "将视觉压缩、时序动态与控制结合，并研究在模型想象中学习策略。"
+  },
+  {
+    "id": "1912.01603",
+    "name": "Dreamer",
+    "title": "Dream to Control: Learning Behaviors by Latent Imagination",
+    "first_submitted": "2019-12-03",
+    "paper": "https://arxiv.org/abs/1912.01603",
+    "collection": "foundations",
+    "summary_zh": "通过 latent 想象轨迹训练行为与价值模型。"
+  },
+  {
+    "id": "2301.04104",
+    "name": "DreamerV3",
+    "title": "Mastering Diverse Domains through World Models",
+    "first_submitted": "2023-01-10",
+    "paper": "https://arxiv.org/abs/2301.04104",
+    "collection": "foundations",
+    "summary_zh": "用统一配置在多类任务中学习世界模型和控制策略。"
+  },
+  {
+    "id": "2301.08243",
+    "name": "I-JEPA",
+    "title": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture",
+    "first_submitted": "2023-01-19",
+    "paper": "https://arxiv.org/abs/2301.08243",
+    "collection": "foundations",
+    "summary_zh": "通过预测图像区域的表征学习视觉特征。"
+  },
+  {
+    "id": "2506.09985",
+    "name": "V-JEPA 2",
+    "title": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+    "first_submitted": "2025-06-11",
+    "paper": "https://arxiv.org/abs/2506.09985",
+    "collection": "foundations",
+    "summary_zh": "结合视频自监督与机器人交互数据，研究表征预测及规划。"
+  },
+  {
+    "id": "2408.14837",
+    "name": "GameNGen",
+    "title": "Diffusion Models Are Real-Time Game Engines",
+    "first_submitted": "2024-08-27",
+    "paper": "https://arxiv.org/abs/2408.14837",
+    "collection": "foundations",
+    "summary_zh": "以动作条件视频生成模拟 DOOM 游戏的交互状态变化。"
+  },
+  {
+    "id": "2304.03442",
+    "name": "Generative Agents",
+    "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+    "first_submitted": "2023-04-07",
+    "paper": "https://arxiv.org/abs/2304.03442",
+    "collection": "foundations",
+    "summary_zh": "用记忆、反思和规划构建交互式社会行为模拟。"
+  },
+  {
+    "id": "2411.06559",
+    "name": "WebDreamer",
+    "title": "Is Your LLM Secretly a World Model of the Internet? Model-Based Planning for Web Agents",
+    "first_submitted": "2024-11-10",
+    "paper": "https://arxiv.org/abs/2411.06559",
+    "collection": "foundations",
+    "summary_zh": "用语言模型模拟网页动作后果，支持网页智能体规划。"
+  },
+  {
+    "id": "2410.18072",
+    "name": "WorldSimBench",
+    "title": "WorldSimBench: Towards Video Generation Models as World Simulators",
+    "first_submitted": "2024-10-23",
+    "paper": "https://arxiv.org/abs/2410.18072",
+    "collection": "benchmarks",
+    "summary_zh": "结合感知评价与操作评价，检验视频模拟器的视觉和行动能力。"
+  },
+  {
+    "id": "2501.09038",
+    "name": "Physics-IQ",
+    "title": "Do generative video models understand physical principles?",
+    "first_submitted": "2025-01-14",
+    "paper": "https://arxiv.org/abs/2501.09038",
+    "collection": "benchmarks",
+    "summary_zh": "用真实物理现象的未来视频测试生成模型的物理预测能力。"
+  },
+  {
+    "id": "2505.09694",
+    "name": "EWMBench",
+    "title": "EWMBench: Evaluating Scene, Motion, and Semantic Quality in Embodied World Models",
+    "first_submitted": "2025-05-14",
+    "paper": "https://arxiv.org/abs/2505.09694",
+    "collection": "benchmarks",
+    "summary_zh": "分别考察具身视频的场景一致性、运动正确性和语义对齐。"
+  },
+  {
+    "id": "2406.08407",
+    "name": "MMWorld",
+    "title": "MMWorld: Towards Multi-discipline Multi-faceted World Model Evaluation in Videos",
+    "first_submitted": "2024-06-12",
+    "paper": "https://arxiv.org/abs/2406.08407",
+    "collection": "benchmarks",
+    "summary_zh": "面向跨学科视频理解与推理的多模态问答基准。"
+  },
+  {
+    "id": "2605.12090",
+    "name": "World Action Models survey",
+    "title": "World Action Models: The Next Frontier in Embodied AI",
+    "first_submitted": "2026-05-12",
+    "paper": "https://arxiv.org/abs/2605.12090",
+    "collection": "surveys",
+    "summary_zh": "以世界预测与动作生成的结合梳理 WAM 研究路线。"
+  }
+]
