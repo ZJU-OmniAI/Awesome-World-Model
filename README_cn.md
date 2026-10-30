@@ -6,214 +6,253 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE.txt)
 [![Papers](https://img.shields.io/badge/Papers-67-blue.svg)](docs/paper-index.md)
 
-> **综述：世界模型的环境表征、未来预测与具身行动。**
+> **世界模型：从环境表征、未来预测到具身行动。**
 >
-> 面向决策的世界模型需要保存任务相关状态、预测动作后果，并让预测参与可执行的行为。
+> 理解当前状态，预测动作后果，让想象中的未来参与真实世界的决策。
+
+世界模型学习环境的内部表示及其变化规律，连接视觉理解、视频生成、模型式强化学习与机器人控制。面向具身智能，研究重点进一步落在三个问题上：**模型预测什么，预测如何用于动作生成，以及预测能否在长期交互中保持可靠。**
+
+[论文索引](docs/paper-index.md) · [世界模型基础](docs/01-world-model-primer.md) · [World Action Models](docs/02-world-action-models.md) · [关键问题与代表方法](docs/03-problem-taxonomy.md)
 
 ## 目录
 
-- [摘要](#overview)
 - [1. 世界模型科普](#primer)
-- [2. 世界模型与动作生成](#wam)
+- [2. World Action Models：从预测到动作](#wam)
 - [3. 问题分类与代表工作](#problems)
-- [4. 评测基准与实验分析](#evaluation)
-- [5. 研究讨论](#discussion)
-- [论文与学习资源](#resources)
-
-<a id="overview"></a>
-## 摘要
-
-世界模型通过内部表示和动态预测，描述环境当前处于什么状态、未来可能怎样变化。从 [World Models](https://arxiv.org/abs/1803.10122)与 [Dreamer](https://arxiv.org/abs/1912.01603)的潜空间想象，到视频生成与交互模拟，再到连接未来预测和机器人控制的 [World Action Models](https://arxiv.org/abs/2605.12090)，这些路线共同关注如何让预测成为决策的依据。
-
-机器人操作对世界模型提出了更具体的要求：预测需要响应动作、保持任务状态，并支持控制。**预测什么**与**预测怎样参与动作生成**是两个核心问题。模型能否保持长期状态、正确预测动作后果，并保留决策所需的信息，决定了预测在复杂任务中的作用。
-
-| 主题 | 核心问题 | 专题 |
-|---|---|---|
-| 01 · 世界模型科普 | 模型表示什么、预测什么、用在哪里？ | [概念、发展脉络与术语](docs/01-world-model-primer.md) |
-| 02 · World Action Models | 未来信息如何用于策略、规划和控制？ | [预测目标、模型架构与训练推理](docs/02-world-action-models.md) |
-| 03 · 问题分类 | 预测能否保持状态、符合物理规律并帮助决策？ | [代表方法、实验结果与开放问题](docs/03-problem-taxonomy.md) |
-
-[论文索引](docs/paper-index.md)
+- [4. 评测基准与实验结果](#evaluation)
+- [5. 开放问题](#discussion)
+- [6. 论文与学习资源](#resources)
 
 <a id="primer"></a>
 ## 1. 世界模型科普
 
-### 1.1 状态、动作与未来
+### 1.1 状态表示与动态预测
 
-以机器人推杯子为例：相机给出当前画面，模型需要表示杯子的位置、桌面结构和机器人状态；给定推的方向与幅度，预测杯子接下来怎样移动。这包含两个相互依赖的过程：**从观察形成内部状态，以及根据状态和动作预测变化**。
+机器人要把杯子推到桌面另一侧。当前图像呈现杯子的外观与位置，但速度、接触状态和被遮挡的部分，往往需要结合历史观察才能判断。世界模型首先形成内部状态，再预测候选动作将怎样改变杯子与周围环境。
 
 $$
-z_t = E(o_{\le t},a_{<t}),\qquad
+z_t = E(o_{\le t},a_{\lt t}),\qquad
 \hat z_{t+1} \sim p_\theta(z_{t+1}\mid z_t,a_t).
 $$
 
-这里 $o_t$ 是观察，$z_t$ 是内部状态，$a_t$ 是动作。需要可视化时，可以将未来状态解码成图像、视频或几何；用于控制时，也可以直接在 latent 空间规划或训练策略。部分可观测环境需要历史信息或记忆，单帧图像通常不能完整表达速度、遮挡关系和先前交互。
+这里 $o_t$ 为观察，$z_t$ 为内部状态，$a_t$ 为动作。状态可以采用潜在特征、对象集合、三维结构或记忆；未来状态可以解码为图像和视频，也可以直接用于规划或策略学习。[World Models](https://arxiv.org/abs/1803.10122) 将视觉压缩、时序动态与控制结合；[Dreamer](https://arxiv.org/abs/1912.01603) 进一步利用潜空间中的想象轨迹训练策略与价值模型。
 
 ```mermaid
 flowchart LR
-    O[观察与历史] --> S[内部状态与记忆]
-    S --> W[世界动态预测]
-    A[候选动作] --> W
-    W --> F[未来图像 / 几何 / latent / 结果]
-    F --> P[策略学习或动作评价]
-    P --> E[真实执行]
+    O["观察与历史"] --> S["内部状态与记忆"]
+    S --> W["世界动态预测"]
+    A["候选动作"] --> W
+    W --> F["未来状态与结果"]
+    F --> P["规划、评价与策略学习"]
+    P --> E["环境中执行"]
     E --> O
 ```
 
-[Dreamer](https://arxiv.org/abs/1912.01603)通过想象轨迹学习行为，[V-JEPA 2](https://arxiv.org/abs/2506.09985)则将表征预测与规划结合，体现了预测模型参与决策的不同路径。
+世界模型与决策的联系可以发生在不同阶段：训练时生成想象轨迹，推理时比较候选动作，或向动作模型提供未来特征。预测范围、状态表示和使用方式，共同决定模型需要学习哪些环境规律。
 
-### 1.2 两条主线与四类应用
+### 1.2 从潜空间动态到交互世界
 
-可以从“理解世界”和“想象未来”两条主线理解世界模型。前者关注状态中保存什么，后者关注状态如何随条件改变；它们可以在同一模型中结合。
-
-| 方向 | 研究内容 | 代表工作 |
+| 日期 | 工作 | 主要贡献 |
 |---|---|---|
-| 内部表示 | 语义、对象、空间关系、历史与潜在动态 | [World Models](https://arxiv.org/abs/1803.10122)、[I-JEPA](https://arxiv.org/abs/2301.08243) |
-| 未来预测 | 给定条件后的视觉、几何、交互与结果 | [Sora 技术报告](https://openai.com/index/video-generation-models-as-world-simulators/)、[Genie 3 研究介绍](https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/) |
-| 游戏智能 | 动作条件场景演化与交互模拟 | [GameNGen](https://arxiv.org/abs/2408.14837) |
-| 具身智能 | 视觉计划、策略评估、想象数据与动作生成 | [World Action Models](https://arxiv.org/abs/2605.12090) |
-| 城市智能 | 驾驶场景预测、交通交互和决策模拟 | [WorldSimBench](https://arxiv.org/abs/2410.18072)的驾驶场景评测 |
-| 社会智能 | 带记忆、反思和计划的多智能体交互 | [Generative Agents](https://arxiv.org/abs/2304.03442) |
+| 2018-03-27 | [World Models](https://arxiv.org/abs/1803.10122) | 通过视觉压缩与时序动态构建世界表示，研究在想象环境中学习控制 |
+| 2019-12-03 | [Dreamer](https://arxiv.org/abs/1912.01603) | 从潜空间想象轨迹学习策略与价值 |
+| 2023-01-10 | [DreamerV3](https://arxiv.org/abs/2301.04104) | 用统一配置在多类任务中学习世界模型与行为 |
+| 2023-01-19 | [I-JEPA](https://arxiv.org/abs/2301.08243) | 通过预测图像区域的表征学习视觉特征 |
+| 2024-08-27 | [GameNGen](https://arxiv.org/abs/2408.14837) | 以动作条件视频生成模拟 DOOM 游戏的交互变化 |
+| 2025-06-11 | [V-JEPA 2](https://arxiv.org/abs/2506.09985) | 将视频表征学习、未来预测与机器人规划连接起来 |
 
-这些应用的状态、动作和评测协议不同。社会行为模拟、视频理解与机器人接触动力学应分别评价，不能用一个总分替代。
+这些工作发展出不同的预测目标：Dreamer 在潜空间学习动态，I-JEPA 预测图像区域表征，GameNGen 生成动作条件下的后续画面。I-JEPA 提供的是视觉表征学习方法；时间与动作条件则使预测进一步具备描述交互过程的能力。
 
-[世界模型：概念、发展脉络与应用](docs/01-world-model-primer.md)
+视频生成扩展了世界模型能够表达的场景与变化。[Sora](https://openai.com/index/video-generation-models-as-world-simulators/) 探索视频模型的模拟能力，[Genie 3](https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/) 则面向可交互的世界生成。用于控制时，模型还需要保持状态，并准确响应具体动作。
+
+### 1.3 主要应用
+
+| 应用 | 建模对象 | 代表工作 |
+|---|---|---|
+| 游戏与交互环境 | 控制输入引起的场景与角色状态变化 | [GameNGen](https://arxiv.org/abs/2408.14837) |
+| 机器人操作 | 对象运动、接触、视觉计划与机器人动作 | [World Action Models](https://arxiv.org/abs/2605.12090) |
+| 驾驶与交通场景 | 道路参与者、运动轨迹与驾驶决策后果 | [WorldSimBench](https://arxiv.org/abs/2410.18072) |
+| 社会行为模拟 | 个体记忆、计划与多智能体交互 | [Generative Agents](https://arxiv.org/abs/2304.03442) |
+| 网页智能体 | 网页状态与候选操作的结果 | [WebDreamer](https://arxiv.org/abs/2411.06559) |
+
+不同应用赋予“状态”和“动作”不同的含义。机器人操作尤其依赖对象几何、接触动态与本体约束，世界预测需要进一步连接到可执行的控制。
 
 <a id="wam"></a>
-## 2. 世界模型与动作生成
+## 2. World Action Models：从预测到动作
 
-### 2.1 动作生成与未来预测
+### 2.1 世界模型与动作模型怎样连接
 
-普通策略直接建模 $p(a\mid o,\ell)$。动作条件世界模型建模 $p(o'\mid o,a)$。WAM 在学习或推理中把未来状态与动作联系起来，可概括为 $p(o',a\mid o,\ell)$；级联方法常将其实现为先预测未来、再依据未来解码动作。这里 $\ell$ 为语言指令。语言条件的目标视频与给定数值动作后的反事实模拟，提供的是不同能力。[WAM 综述](https://arxiv.org/abs/2605.12090)
+World Action Models（WAM）将预测性世界建模与动作生成结合。VLA 策略根据观察和指令输出动作；动作条件世界模型预测给定动作的后果；目标条件视觉规划则生成与任务对应的未来状态。[World Action Models: The Next Frontier in Embodied AI](https://arxiv.org/abs/2605.12090)
 
-### 2.2 世界模型预测什么
-
-| 预测信息 | 对动作的作用 | 代表工作 |
+| 模型 | 建模形式 | 作用 |
 |---|---|---|
-| RGB 视频、关键帧、视觉子目标 | 描述目标状态或多阶段计划 | UniPi、Video Language Planning、RoboEnvision |
-| 预测性 hidden state、未来 latent | 为动作模型提供动态特征，减少像素解码 | VPP、FLARE、LaWAM |
-| 深度、对象状态、2D/3D flow、轨迹 | 表示哪里变化、怎样移动 | Im2Flow2Act、3DFlowAction、RynnWorld-4D |
-| 掩码、交互区域、触觉与接触 | 突出行动对象与物理交互 | MVA、Dream-Tac、N₀-TWAM |
-| 价值、进度与成功评价 | 比较候选动作、检测偏差 | Cosmos Policy、τ₀-WM、MV-WAM |
+| VLA 策略 | $p(a\mid o,\ell)$ | 根据观察与指令生成动作 |
+| 动作条件世界模型 | $p(o'\mid o,a)$ | 预测给定动作产生的未来观察 |
+| 目标条件视觉规划 | $p(o'\mid o,\ell)$ | 生成任务对应的视觉计划或子目标 |
+| 级联 WAM | $p(o'\mid o,\ell)\,p(a\mid o',o,\ell)$ | 先预测未来，再从未来提取动作 |
+| 联合 WAM | $p(o',a\mid o,\ell)$ | 共同学习未来观察与动作 |
 
-几何适合约束位置，运动适合描述轨迹，触觉补充视觉不易观察的接触。预测目标的价值取决于其对任务成功率、泛化和控制稳定性的贡献。
+其中 $o$ 为当前观察，$o'$ 为未来观察，$a$ 为动作，$\ell$ 为语言指令；模型还可以使用历史与机器人本体状态。未来也可以表示为潜在特征或运动轨迹，而无需生成完整 RGB 视频。
 
-### 2.3 六类模型架构
+### 2.2 预测什么信息
+
+| 预测目标 | 对动作生成的作用 | 代表工作 |
+|---|---|---|
+| 视频、关键帧与视觉子目标 | 描述目标状态，分解长程任务 | [UniPi](https://arxiv.org/abs/2302.00111)、[VLP](https://arxiv.org/abs/2310.10625)、[RoboEnvision](https://arxiv.org/abs/2506.22007) |
+| 预测性特征与未来表征 | 为策略提供动态信息，减少像素重建开销 | [VPP](https://arxiv.org/abs/2412.14803)、[FLARE](https://arxiv.org/abs/2505.15659)、[LaWAM](https://arxiv.org/abs/2606.15768) |
+| 几何、光流与对象轨迹 | 表达对象在哪里、应该怎样移动 | [Im2Flow2Act](https://arxiv.org/abs/2407.15208)、[3DFlowAction](https://arxiv.org/abs/2506.06199)、[RynnWorld-4D](https://arxiv.org/abs/2607.06559) |
+| 触觉与接触状态 | 补充视觉难以直接观察的物理交互 | [Dream-Tac](https://arxiv.org/abs/2606.08737)、[N₀-TWAM](https://arxiv.org/abs/2607.23783) |
+| 价值、进度与任务结果 | 评价候选动作，检测偏差并支持恢复 | [Cosmos Policy](https://arxiv.org/abs/2601.16163)、[τ₀-WM](https://arxiv.org/abs/2606.01027)、[MV-WAM](https://arxiv.org/abs/2606.21088) |
+
+预测目标决定动作模块能够获得的信息。对象轨迹便于表达运动意图，触觉有助于描述接触，潜在特征则减少完整视频生成的负担。它们对抓取、移动、放置和精细插入的作用，取决于任务所需的几何与动态信息。
+
+### 2.3 级联与联合建模
 
 ```mermaid
 flowchart TB
-    W[World Action Models] --> C[Cascaded：预测接口连接动作模块]
-    W --> J[Joint：联合世界与动作建模]
-    C --> CL[显式未来 + 学习式动作提取]
-    C --> CG[几何或运动接口 + 控制]
-    C --> CI[隐式预测特征 + 动作模型]
-    J --> JA[自回归主干]
-    J --> JS[单流或共享主干扩散]
-    J --> JM[多流或多专家扩散]
+    W["World Action Models"] --> C["级联：通过预测接口生成动作"]
+    W --> J["联合：共同学习世界与动作"]
+    C --> CV["视觉计划与动作解码"]
+    C --> CG["几何或运动接口"]
+    C --> CL["预测特征与策略"]
+    J --> JA["自回归主干"]
+    J --> JS["共享主干扩散"]
+    J --> JM["多流或多专家扩散"]
 ```
 
-| 架构 | 代表工作 | 特点与局限 |
+| 架构 | 预测与动作的连接方式 | 代表工作 |
 |---|---|---|
-| 显式未来 + 学习式动作提取 | [UniPi](https://arxiv.org/abs/2302.00111)、[VLP](https://arxiv.org/abs/2310.10625)、[MVA](https://arxiv.org/abs/2607.19343) | 预测结果可视化，动作解码依赖视觉计划的可执行性 |
-| 几何或运动接口 | [AVDC](https://arxiv.org/abs/2310.08576)、[Im2Flow2Act](https://arxiv.org/abs/2407.15208)、[Dream2Flow](https://arxiv.org/abs/2512.24766) | 运动可跨本体表达，仍受深度、对应、抓取与控制误差影响 |
-| 隐式预测特征 | [ARDuP](https://arxiv.org/abs/2406.13301)、[VPP](https://arxiv.org/abs/2412.14803)、[RynnWorld-4D](https://arxiv.org/abs/2607.06559) | 减少 RGB 解码开销，效果取决于特征保留了多少动作相关信息 |
-| Joint 自回归 | [WorldVLA](https://arxiv.org/abs/2506.21539)、[RynnVLA-002](https://arxiv.org/abs/2511.17502) | 统一序列建模；动作编码与生成延迟需单独设计 |
-| Joint 单流 / 共享主干扩散 | [UWM](https://arxiv.org/abs/2504.02792)、[FLARE](https://arxiv.org/abs/2505.15659)、[DreamZero](https://arxiv.org/abs/2602.15922) | 共享训练信号；各方法的目标及推理流程不同 |
-| Joint 多流 / 多专家扩散 | [Motus](https://arxiv.org/abs/2512.13030)、[LingBot-VA](https://arxiv.org/abs/2601.21998)、[Fast-WAM](https://arxiv.org/abs/2603.16666) | 各模态可独立建模，信息交换方式影响生成一致性与推理成本 |
+| 级联：视觉计划 | 先生成未来画面，再由逆动力学模型或策略解码动作 | [UniPi](https://arxiv.org/abs/2302.00111)、[VLP](https://arxiv.org/abs/2310.10625)、[MVA](https://arxiv.org/abs/2607.19343) |
+| 级联：几何与运动 | 预测对象运动，结合学习式策略、运动学或轨迹优化控制机器人 | [AVDC](https://arxiv.org/abs/2310.08576)、[Im2Flow2Act](https://arxiv.org/abs/2407.15208)、[Dream2Flow](https://arxiv.org/abs/2512.24766) |
+| 级联：预测特征 | 将未来潜在特征或预测性中间特征输入动作模型 | [ARDuP](https://arxiv.org/abs/2406.13301)、[VPP](https://arxiv.org/abs/2412.14803)、[RynnWorld-4D](https://arxiv.org/abs/2607.06559) |
+| 联合：自回归主干 | 世界预测与动作生成共享多模态序列模型 | [WorldVLA](https://arxiv.org/abs/2506.21539)、[RynnVLA-002](https://arxiv.org/abs/2511.17502) |
+| 联合：共享主干扩散 | 在共享模型中学习未来与动作目标 | [UWM](https://arxiv.org/abs/2504.02792)、[FLARE](https://arxiv.org/abs/2505.15659)、[DreamZero](https://arxiv.org/abs/2602.15922) |
+| 联合：多流或多专家扩散 | 为不同模态保留分支，通过跨分支交互交换信息 | [Motus](https://arxiv.org/abs/2512.13030)、[LingBot-VA](https://arxiv.org/abs/2601.21998)、[Fast-WAM](https://arxiv.org/abs/2603.16666) |
 
-预测结果的形式、训练目标和推理过程描述了模型的不同方面。Im2Flow2Act 将运动轨迹输入学习式控制策略；FLARE 在 latent 空间使用未来监督；扩散模型也可以按时间顺序逐块预测。联合训练与级联推理可以出现在同一模型中。
+**视觉计划与运动接口。** UniPi 用视觉未来表达任务，再通过逆动力学模型推断动作。Im2Flow2Act 将对象运动轨迹交给学习式控制策略，Dream2Flow 则从生成视频中恢复三维对象流并优化机器人动作。这类接口便于查看计划，也需要解决视觉目标与机器人运动、抓取和接触之间的对应关系。
 
-显式视觉计划把任务目标转成可查看的未来状态，随后由 IDM 或控制策略执行；几何与运动接口进一步把“物体怎样移动”从外观中分离出来；隐式特征路线则让动作模块直接读取预测性表征。三者的共同问题是：**中间预测所表达的变化，能否可靠地转成机器人动作？**
+**预测特征与动作策略。** VPP 读取视频模型中间层的预测性视觉特征，RynnWorld-4D 将 RGB、深度与光流的动态建模用于策略学习。省去完整视频解码后，动作模型仍需要从特征中获得对象变化、空间关系和交互信息。
 
-联合建模将未来与动作放进共享训练过程。[DreamZero](https://arxiv.org/abs/2602.15922)以联合视频动作 flow matching 学习两者，并在执行时用新获取的真实观察更新生成上下文。它展示了世界预测、动作输出和环境反馈如何在同一系统中连接。
+**联合世界与动作生成。** WorldVLA 共享动作模式与世界预测模式；UWM 通过模态的条件与生成状态支持策略、前向动态和逆动力学等任务；DreamZero 使用联合视频动作 flow matching，并在执行中用真实观察更新生成上下文。联合训练可以共享动态信息，部署时如何生成动作则由具体模型决定。
 
-![DreamZero 的联合训练与真实观测闭环](assets/figures/dreamzero.png)
+![DreamZero 的联合视频动作训练与真实观察反馈](assets/figures/dreamzero.png)
 
-*论文图：[DreamZero](https://arxiv.org/abs/2602.15922)。左侧为联合训练，右侧为真实观测反馈下的执行。*
+*图：[DreamZero](https://arxiv.org/abs/2602.15922)。联合训练未来视频与动作，执行时通过真实观察更新上下文。*
 
-### 2.4 训练时预测未来，推理时如何使用
+### 2.4 训练时预测，部署时怎样使用
 
-未来信息可以作为训练监督、部署时的预测特征、显式视频计划或候选动作搜索的依据。[Fast-WAM](https://arxiv.org/abs/2603.16666)在推理期移除未来分支，[LaWAM](https://arxiv.org/abs/2606.15768)预测紧凑子目标，[DreamZero](https://arxiv.org/abs/2602.15922)联合生成未来与动作，形成不同的精度与计算成本取舍。
+| 工作 | 未来信息参与训练的方式 | 部署时使用的信息 |
+|---|---|---|
+| [WorldVLA](https://arxiv.org/abs/2506.21539) | 动作生成与世界预测共享主干 | 动作模式直接生成动作 |
+| [Fast-WAM](https://arxiv.org/abs/2603.16666) | 联合未来预测与动作学习，限制动作分支的可见信息 | 当前帧世界特征与动作分支；移除未来分支 |
+| [LaWAM](https://arxiv.org/abs/2606.15768) | 学习潜在动作及未来特征预测 | 当前特征与预测的潜在子目标 |
+| [DreamZero](https://arxiv.org/abs/2602.15922) | 联合视频动作生成 | 联合预测过程与不断更新的真实观察 |
+| [Cosmos Policy](https://arxiv.org/abs/2601.16163) | 将动作、状态与价值编码进视频潜在序列 | 控制或规划所需的条件生成 |
 
-共享未来监督可能改善动作表征；部署时增加未来生成或候选搜索则会消耗延迟预算。任务成功率、预测开销和真实观察反馈频率共同决定系统的部署表现。
+训练期的未来监督可以改善动作表征，部署期的未来生成则引入额外计算。Fast-WAM 通过注意力结构约束训练中可用的信息，使推理能够移除未来分支；LaWAM 保留紧凑的未来特征；DreamZero 将视频与动作共同生成。它们分别探索了未来信息与推理成本之间的不同取舍。
 
-[World Action Models：预测目标、架构与推理](docs/02-world-action-models.md)
+[World Action Models：方法与架构](docs/02-world-action-models.md)
 
 <a id="problems"></a>
 ## 3. 问题分类与代表工作
 
-架构回答“怎样连接模块”，问题分类回答“这些连接还会在哪里失败”。面向决策，可以从三个相互关联的维度检查世界模型。
+长期交互要求模型保存已经发生的变化，预测具体动作的后果，并向策略提供与任务有关的信息。记忆、物理动态与动作表征共同影响世界模型在决策中的可靠性。
 
-| 问题 | 典型问题 | 主要方法 | 代表工作 |
-|---|---|---|---|
-| 长期状态一致性 | 回访、遮挡或多阶段操作后，身份和状态能否保持？ | 空间记忆、压缩历史、对象状态 | [Spatial Memory](https://arxiv.org/abs/2506.05284)、[RELIC](https://arxiv.org/abs/2512.04040)、[WorldDP](https://arxiv.org/abs/2606.08775) |
-| 动作与物理正确性 | 改变动作后，未来是否相应改变？轨迹、关系和控制约束是否合理？ | 逐帧动作注入、结构监督、后训练对齐 | [Ctrl-World](https://arxiv.org/abs/2510.10125)、[PhysisForcing](https://arxiv.org/abs/2606.28128)、[EVA](https://arxiv.org/abs/2603.17808)、[ABot-PhysWorld](https://arxiv.org/abs/2603.23376) |
-| 面向动作决策的表征 | 保留的信息是否足以支持当前任务的动作选择？ | 紧凑子目标、动作相关表征对齐 | [LaWAM](https://arxiv.org/abs/2606.15768)、[AGRA](https://arxiv.org/abs/2606.12217) |
-
-[DexWorldModel](https://arxiv.org/abs/2604.16484)将语义 latent、长期记忆与异步推理结合。[WorldDP](https://arxiv.org/abs/2606.08775)通过对象状态支持多阶段规划；长期身份保持和遮挡恢复仍是对象表示面临的独立挑战。
-
-### 3.1 长期状态一致性：让过去的交互继续影响未来
-
-有限视频上下文容易丢失离开视野的对象和已完成的任务状态。[Spatial Memory](https://arxiv.org/abs/2506.05284)保存可检索的空间与历史信息，为回访区域提供参照；[RELIC](https://arxiv.org/abs/2512.04040)通过历史压缩支持流式生成。对机器人而言，还需检验记忆能否更新动态对象，保留关键接触与任务进展。
-
-![空间与历史记忆为视频世界模型提供长期参照](assets/figures/spatial-memory.png)
-
-*论文图：[Video World Models with Long-term Spatial Memory](https://arxiv.org/abs/2506.05284)。空间结构、历史参考帧与近期上下文共同参与预测。*
-
-### 3.2 动作与物理正确性：让未来响应给定动作
-
-[Ctrl-World](https://arxiv.org/abs/2510.10125)强调动作与生成帧的细粒度对应；[PhysisForcing](https://arxiv.org/abs/2606.28128)用轨迹和实体关系监督约束预测；[EVA](https://arxiv.org/abs/2603.17808)与 [ABot-PhysWorld](https://arxiv.org/abs/2603.23376)则通过后训练强化动作可执行性或物理偏好。这些路线针对不同误差，适合按证据层次比较。
-
-| 层次 | 评测内容 | 相关方法 |
+| 研究问题 | 典型困难 | 主要方法 |
 |---|---|---|
-| 几何连续 | 物体轨迹、结构与遮挡关系一致 | 点轨迹、深度和空间记忆 |
-| 交互关系 | 接触对象、作用顺序和结果随动作改变 | 动作条件预测、关系监督、干预测试 |
-| 动作可执行性 | 解码动作符合机器人运动与控制限制 | IDM 奖励、约束控制、真实执行 |
+| 长期状态一致性 | 回访时场景变化、遮挡后对象丢失、多阶段任务状态遗忘 | 空间记忆、历史压缩、对象中心状态 |
+| 动作与物理正确性 | 预测忽略动作、轨迹变形、接触关系错误 | 精细动作对齐、结构监督、后训练 |
+| 面向动作决策的表征 | 预测画面合理，策略却丢失关键几何或关注无关背景 | 潜在子目标、动作相关特征对齐 |
 
-视频质量分数、视觉偏好或动作平滑度各自只覆盖部分证据。评测还需要改变动作、打乱时间对应或引入失败轨迹，检查预测是否忠实反映相应后果。
+### 3.1 长期状态一致性
+
+**空间与情景记忆。** [Video World Models with Long-term Spatial Memory](https://arxiv.org/abs/2506.05284) 在线保存几何结构与历史参考帧，为回访区域提供空间与视觉参照。近期观察描述当前变化，长期记忆保留有限视频上下文之外的环境信息。
+
+![Spatial Memory 的空间结构、历史参考帧与近期上下文](assets/figures/spatial-memory.png)
+
+*图：[Video World Models with Long-term Spatial Memory](https://arxiv.org/abs/2506.05284)。空间记忆与历史检索共同支撑长期预测。*
+
+**压缩历史与流式生成。** [RELIC](https://arxiv.org/abs/2512.04040) 将历史压缩为潜在 token，并结合动作与相机位姿信息支持因果流式生成。[DexWorldModel](https://arxiv.org/abs/2604.16484) 则结合语义状态、TTT Memory 与异步推理，减少随历史增长的存储和串行计算开销。
+
+**对象状态与多阶段规划。** [WorldDP](https://arxiv.org/abs/2606.08775) 在对象中心状态上学习动态，高层规划子目标，低层使用 Diffusion Policy 执行。多阶段规划依赖正确的对象状态；更长时间的交互还要求持续维护对象身份、遮挡后的状态及已经完成的任务。
+
+空间记忆适合保存布局，压缩记忆控制历史开销，对象表示便于规划。动态环境仍需要解决旧状态何时失效，以及接触、移动和任务进展怎样写入记忆。
+
+### 3.2 动作与物理正确性
+
+**精细动作条件。** [Ctrl-World](https://arxiv.org/abs/2510.10125) 将逐帧动作条件、多视角预测与历史检索结合，使生成环境能够响应机器人控制并支持策略评估。动作与预测帧之间的时间对应，决定了模型能否区分方向、幅度与执行顺序不同的操作。
+
+**结构监督。** [PhysisForcing](https://arxiv.org/abs/2606.28128) 用点轨迹约束局部运动，用实体关系监督交互结构，将训练重点放到对象运动与相互作用上。
+
+![PhysisForcing 的点轨迹监督与实体关系对齐](assets/figures/physisforcing.png)
+
+*图：[PhysisForcing](https://arxiv.org/abs/2606.28128)。局部轨迹与实体关系分别约束运动和交互结构。*
+
+**后训练。** [EVA](https://arxiv.org/abs/2603.17808) 使用逆动力学模型将视频解码为动作，以速度、加速度和本体限制等构造奖励；[ABot-PhysWorld](https://arxiv.org/abs/2603.23376) 分别评价物理合理性与动作一致性，并进行偏好优化。两者将控制约束或物理评价反馈到生成模型，但效果仍受动作解码器、评价模型与训练数据覆盖的影响。
+
+几何连续性、接触关系与动作可执行性分别对应不同的约束。改变动作、反转轨迹或引入失败操作，可以检验模型是否真正预测了这些变化的后果。
 
 ### 3.3 面向动作决策的表征
 
-面向动作决策的表征需要保留足以支持动作选择的信息（Action-Sufficient）。完整未来视频包含大量外观细节，控制可能只需要其中的目标位置、运动方向或接触关系。[LaWAM](https://arxiv.org/abs/2606.15768)预测紧凑 latent 子目标；[AGRA](https://arxiv.org/abs/2606.12217)对齐世界模型与动作解码器之间的特征，使动作模型更关注与任务有关的区域。
+**紧凑的未来子目标。** [LaWAM](https://arxiv.org/abs/2606.15768) 在视觉特征空间学习潜在动作与未来预测，让动作模块同时读取当前特征和预测子目标。模型减少外观重建的同时，需要保留精细操作所需的几何和动态。
 
-![AGRA 用表征对齐连接世界预测与动作解码](assets/figures/agra.png)
+**世界特征与动作解码的对齐。** [AGRA](https://arxiv.org/abs/2606.12217) 研究视频生成特征与动作头之间的联系，利用视觉教师的空间语义信息对齐世界模型中间特征，改善动作相关区域的表示。
 
-*论文图：[Making Foresight Actionable](https://arxiv.org/abs/2606.12217)。视觉教师的空间语义信息用于对齐世界模型中间特征。*
+![AGRA 的世界特征与动作表征对齐](assets/figures/agra.png)
 
-这一方向需要同时回答信息与成本两个问题：紧凑表征是否保留精细操作所需的几何和动态，以及减少未来重建后能否保留控制收益。
+*图：[Making Foresight Actionable](https://arxiv.org/abs/2606.12217)。视觉教师引导世界模型的空间语义特征，用于动作解码。*
 
-[世界模型的关键问题与代表方法](docs/03-problem-taxonomy.md)
+面向动作的预测需要保留能够区分操作后果的信息。对象位置、运动方向和接触状态的价值，取决于任务对精度、泛化与实时性的要求。
+
+[关键问题、方法细节与实验分析](docs/03-problem-taxonomy.md)
 
 <a id="evaluation"></a>
-## 4. 评测基准与实验分析
+## 4. 评测基准与实验结果
 
-| 评测方向 | 基准 | 评测内容 |
+### 4.1 评测什么能力
+
+| 方向 | 基准或任务 | 评测内容 |
 |---|---|---|
-| 视觉质量与控制效果 | [WorldSimBench](https://arxiv.org/abs/2410.18072) | 生成视频的视觉质量，以及用于机器人控制时的表现 |
-| 物理预测 | [Physics-IQ](https://arxiv.org/abs/2501.09038) | 检查特定物理场景的未来演化 |
-| 具身视频 | [EWMBench](https://arxiv.org/abs/2505.09694) | 分开评价场景、运动与语义 |
+| 视觉质量与控制效果 | [WorldSimBench](https://arxiv.org/abs/2410.18072) | 感知质量，以及世界预测参与决策时的效果 |
+| 物理预测 | [Physics-IQ](https://arxiv.org/abs/2501.09038) | 特定物理场景中未来演化的正确性 |
+| 具身视频生成 | [EWMBench](https://arxiv.org/abs/2505.09694) | 场景、运动与语义质量 |
 | 视频理解与推理 | [MMWorld](https://arxiv.org/abs/2406.08407) | 跨学科视频问答与推理 |
-| 下游操作 | LIBERO、RoboTwin、RoboCasa 与真机任务 | 评价任务成功率、跨场景泛化与执行稳定性 |
+| 机器人操作 | LIBERO、RoboTwin、RoboCasa 与真机任务 | 任务成功率、跨场景泛化与执行稳定性 |
 
-视频生成吞吐、动作块预测延迟与机器人控制频率对应不同的计算环节。生成长度、采样步数、硬件和反馈调度会影响速度；本体、训练数据与任务划分则影响成功率与泛化。代表方法的实验结果见[性能与实验设置](docs/03-problem-taxonomy.md#evidence)。
+预测质量、任务成功率与运行效率对应不同能力。长期预测需要关注状态漂移，动作条件模型需要关注对控制变化的响应，策略则需要在完整任务中验证预测带来的收益。
+
+### 4.2 代表实验
+
+| 工作 | 实验设置 | 结果 |
+|---|---|---|
+| [WorldDP](https://arxiv.org/html/2606.08775v1) | Cube-Triple；完成全部三个方块的操作 | 成功率 30%，对比 HECRL* 的 12% |
+| [EVA](https://arxiv.org/html/2603.17808v1) | 真机 Seen / OOD 各 5 个任务，每任务 20 次；比较加入 RL 前后 | Seen：52% → 64%；OOD：42% → 60% |
+| [AGRA](https://arxiv.org/html/2606.12217v1) | RoboCasa GR1，10% 训练数据，Unseen Combinations | WAM：59.57%；AGRA-ActionCondPass：66.28% |
+| [RELIC](https://arxiv.org/html/2512.04040v1) | 14B 模型，4 × H100 | 视频生成吞吐 16 FPS |
+
+视频生成吞吐、动作块预测延迟与机器人控制频率属于不同环节。例如，[LaWAM](https://arxiv.org/html/2606.15768v2) 的 187 ms/action chunk 使用 A100、BF16 和 10 步动作去噪，计时范围为模型计算。部署中的观察更新、动作执行和异步调度，还会影响端到端响应速度。
+
+[更多实验结果与设置](docs/03-problem-taxonomy.md#evidence)
 
 <a id="discussion"></a>
-## 5. 研究讨论
+## 5. 开放问题
 
-- **分层状态**：对象身份与空间结构的长期记忆，如何与短时动作动态协同？
-- **任务条件记忆**：哪些事件值得写入，如何结合位置、对象、目标和候选动作检索，以及何时修正旧状态？
-- **预测信息与任务的关系**：RGB、几何、运动和交互信息在不同操作任务中是否互补？
-- **训练收益与推理成本**：在相同预算下，训练期未来监督、推理期 latent 预测和完整未来 rollout 各有什么优势？
-
-[开放问题](docs/03-problem-taxonomy.md#discussion)
+- **长期状态与短时动态如何协同？** 对象身份和空间布局需要长期保持，接触与运动状态需要快速更新。分层状态能否同时改善回访一致性与精细控制？
+- **记忆应保存和检索什么？** 关键接触、对象移动和任务阶段转换具有不同的信息价值。任务、位置与候选动作如何共同决定记忆的写入、检索和修正？
+- **物理预测如何反映真实控制能力？** 轨迹、关系与动作约束的改善，能否稳定转化为任务成功率？失败轨迹和分布外动作如何参与训练与评价？
+- **怎样在固定计算预算下选择预测目标？** RGB、潜在特征、几何与触觉在不同任务中各有作用。训练期未来监督、部署期子目标预测与多步想象，应如何分配计算资源？
 
 <a id="resources"></a>
-## 论文与学习资源
+## 6. 论文与学习资源
 
-- [论文索引](docs/paper-index.md)
-- [CVPR 2025 Tutorial: From Video Generation to World Model](https://world-model-tutorial.github.io/)：从视频生成进入世界模型研究。
-- [Awesome Closed-Loop VLA](https://github.com/ZJU-OmniAI/Awesome-Closed-Loop-VLA/blob/main/README_zh.md)：机器人执行、预测与学习闭环。
-- [论文图示与出处](assets/figures/README.md)
+| 主题 | 论文 |
+|---|---|
+| 世界模型基础 | [基础研究](docs/paper-index.md#foundations) · [综述](docs/paper-index.md#surveys) |
+| 预测与动作生成 | [视觉规划](docs/paper-index.md#wam-visual-planning) · [几何与运动](docs/paper-index.md#wam-geometry-motion) · [预测表征](docs/paper-index.md#wam-representation) · [联合建模](docs/paper-index.md#wam-joint) |
+| 决策与部署 | [价值与反馈](docs/paper-index.md#wam-feedback) · [触觉与接触](docs/paper-index.md#wam-tactile) · [高效推理](docs/paper-index.md#wam-efficiency) |
+| 关键问题与评测 | [状态与记忆](docs/paper-index.md#problem-memory) · [动作与物理](docs/paper-index.md#problem-physics) · [评测基准](docs/paper-index.md#benchmarks) |
+
+[CVPR 2025 Tutorial: From Video Generation to World Model](https://world-model-tutorial.github.io/)
 
 <details>
 <summary>社区交流</summary>
